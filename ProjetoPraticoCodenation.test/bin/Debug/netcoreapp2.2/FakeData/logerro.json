@@ -1,0 +1,52 @@
+[
+  {
+    "Id": 1,
+    "UsuarioId": 1,
+    "Titulo": "Erro ao logar no sistema",
+    "Descrição": "Erro 504 Gateway Timeout",
+    "DataCriacao": "2020-04-07 19:17:08",
+    "EventoId": 1,
+    "NivelId": 1,
+    "AmbienteId": 2
+  },
+  {
+    "Id": 2,
+    "UsuarioId": 2,
+    "Titulo": "Erro carregar pagina",
+    "Descrição": "404 não encontrado.",
+    "DataCriacao": "2020-04-07 19:17:08",
+    "EventoId": 1,
+    "NivelId": 2,
+    "AmbienteId": 1
+  },
+  {
+    "Id": 3,
+    "UsuarioId": 4,
+    "Titulo": "Erro acessar site",
+    "Descrição": "500 – erro interno do servidor",
+    "DataCriacao": "2020-04-01 10:20:30",
+    "EventoId": 2,
+    "NivelId": 1,
+    "AmbienteId": 2
+  },
+  {
+    "Id": 4,
+    "UsuarioId": 3,
+    "Titulo": "Erro mudar senha do usuario",
+    "Descrição": "403 Proibido",
+    "DataCriacao": "2020-04-03 00:00:00",
+    "EventoId": 4,
+    "NivelId": 3,
+    "AmbienteId": 1
+  },
+  {
+    "Id": 5,
+    "UsuarioId": 4,
+    "Titulo": "Erro ao acessar relatorio 1000",
+    "Descrição": "Erro 503 Serviço Indisponível",
+    "DataCriacao": "2020-03-07 13:00:18",
+    "EventoId": 2,
+    "NivelId": 3,
+    "AmbienteId": 2
+  }
+]

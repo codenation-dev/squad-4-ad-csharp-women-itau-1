@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "Codigo": 1,
+    "Descricao": "Warning"
+
+  },
+  {
+    "Id": 2,
+    "Codigo": 2,
+    "Descricao": "Error"
+
+  },
+  {
+    "Id": 3,
+    "Codigo": 3,
+    "Descricao": "Debug"
+
+  }
+]
