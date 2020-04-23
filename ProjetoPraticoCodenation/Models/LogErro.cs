@@ -33,15 +33,9 @@ namespace ProjetoPraticoCodenation.Models
         [Required]
         public int EventoId { get; set; }
 
-        [ForeignKey("EventoId")]
-        public virtual Evento Evento { get; set; }
-
-        [Column("id_nivel")]
+        [Column("nivel")]
         [Required]
-        public int NivelId { get; set; }
-
-        [ForeignKey("NivelId")]
-        public virtual Nivel Nivel { get; set; }
+        public string Nivel { get; set; }
 
         [Column("id_usuario")]
         [Required]
@@ -50,11 +44,18 @@ namespace ProjetoPraticoCodenation.Models
         [ForeignKey("UsuarioId")]
         public virtual Usuario Usuario { get; set; }
 
-        [Column("id_ambiente")]
+        [Column("ambiente")]
         [Required]
-        public int AmbienteId { get; set; }
+        public string Ambiente { get; set; }
 
-        [ForeignKey("AmbienteId")]
-        public virtual Ambiente Ambiente { get; set; }
+        [Column("ip")]
+        [Required]
+        public string ip { get; set; }
+
+
+        [Column("arquivo")]
+        [Required]
+        public int arquivo { get; set; }
+
     }
 }

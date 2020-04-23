@@ -26,9 +26,9 @@ namespace ProjetoPraticoCodenation.test
                 .Options;
             
             DataFileNames.Add(typeof(Usuario), $"FakeData{Path.DirectorySeparatorChar}usuario.json");
-            DataFileNames.Add(typeof(Nivel), $"FakeData{Path.DirectorySeparatorChar}nivel.json");
-            DataFileNames.Add(typeof(Evento), $"FakeData{Path.DirectorySeparatorChar}evento.json");
-            DataFileNames.Add(typeof(Ambiente), $"FakeData{Path.DirectorySeparatorChar}ambiente.json");
+            //DataFileNames.Add(typeof(Nivel), $"FakeData{Path.DirectorySeparatorChar}nivel.json");
+            //DataFileNames.Add(typeof(Evento), $"FakeData{Path.DirectorySeparatorChar}evento.json");
+            //DataFileNames.Add(typeof(Ambiente), $"FakeData{Path.DirectorySeparatorChar}ambiente.json");
             DataFileNames.Add(typeof(LogErro),$"FakeData{Path.DirectorySeparatorChar}logerro.json");
 
         }
@@ -36,9 +36,9 @@ namespace ProjetoPraticoCodenation.test
         public void FillWithAll()
         {
             FillWith<Usuario>();
-            FillWith<Nivel>();
-            FillWith<Evento>();
-            FillWith<Ambiente>();
+            //FillWith<Nivel>();
+            //FillWith<Evento>();
+            //FillWith<Ambiente>();
             FillWith<LogErro>();
         }
 

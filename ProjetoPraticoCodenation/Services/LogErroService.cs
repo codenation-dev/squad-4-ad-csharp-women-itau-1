@@ -30,10 +30,10 @@ namespace ProjetoPraticoCodenation.Services
             {
                 existe.Titulo = log.Titulo;
                 existe.Descricao = log.Descricao;
-                existe.NivelId = log.NivelId;
+                existe.Nivel = log.Nivel;
                 existe.UsuarioId = log.UsuarioId;
                 existe.EventoId = log.EventoId;
-                existe.AmbienteId = log.AmbienteId;
+                existe.Ambiente = log.Ambiente;
                 existe.DataCriacao = log.DataCriacao;
             }
 

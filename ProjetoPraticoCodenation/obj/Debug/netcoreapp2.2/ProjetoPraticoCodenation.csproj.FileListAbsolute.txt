@@ -20,3 +20,15 @@ C:\Users\Elis\source\repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenati
 C:\Users\Elis\source\repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.RazorAssemblyInfo.cs
 C:\Users\Elis\source\repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.AssemblyInfoInputs.cache
 C:\Users\Elis\source\repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.AssemblyInfo.cs
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\bin\Debug\netcoreapp2.2\Properties\launchSettings.json
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\bin\Debug\netcoreapp2.2\ProjetoPraticoCodenation.deps.json
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\bin\Debug\netcoreapp2.2\ProjetoPraticoCodenation.runtimeconfig.json
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\bin\Debug\netcoreapp2.2\ProjetoPraticoCodenation.runtimeconfig.dev.json
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\bin\Debug\netcoreapp2.2\ProjetoPraticoCodenation.dll
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\bin\Debug\netcoreapp2.2\ProjetoPraticoCodenation.pdb
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.RazorTargetAssemblyInfo.cache
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.dll
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.pdb
+C:\Users\Elis\Source\Repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.csprojAssemblyReference.cache

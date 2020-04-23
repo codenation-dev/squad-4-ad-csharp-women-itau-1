@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoPraticoCodenation", "ProjetoPraticoCodenation\ProjetoPraticoCodenation.csproj", "{E5F8A813-FB75-4D78-ABE1-780917FCB75B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoPraticoCodenation", "ProjetoPraticoCodenation\ProjetoPraticoCodenation.csproj", "{E5F8A813-FB75-4D78-ABE1-780917FCB75B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjetoPraticoCodenation.test", "ProjetoPraticoCodenation.test\ProjetoPraticoCodenation.test.csproj", "{A0FDE9CB-4FFA-4128-A301-8583F57F4D0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjetoPraticoCodenation.test", "ProjetoPraticoCodenation.test\ProjetoPraticoCodenation.test.csproj", "{A0FDE9CB-4FFA-4128-A301-8583F57F4D0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

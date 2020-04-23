@@ -4,9 +4,6 @@ namespace ProjetoPraticoCodenation.Models
 {
     public class ProjetoPraticoContext : DbContext
     {
-        public DbSet<Ambiente> Ambientes { get; set; }
-        public DbSet<Evento> Eventos { get; set; }
-        public DbSet<Nivel> Niveis { get; set; }
         public DbSet<Usuario> Usuarios { get; set; }
         public DbSet<LogErro> Logs { get; set; }
 
@@ -20,12 +17,14 @@ namespace ProjetoPraticoCodenation.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ProjetoPratico;Trusted_Connection=False");
+                // optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ProjetoPratico;Trusted_Connection=False");
+                optionsBuilder.UseSqlServer(@"Server=DESKTOP-QT7ODQ6\SQLEXPRESS;Database=ProjetoPratico;User Id =user_codenation;Password=12345;Trusted_Connection=False;");
         }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            modelBuilder.ApplyConfiguration(new LogErroConfiguration());
         }
     }
 }
