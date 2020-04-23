@@ -16,3 +16,7 @@ C:\Users\User\Desktop\ProjetoPraticoCodenation\ProjetoPraticoCodenation\ProjetoP
 C:\Users\User\Desktop\ProjetoPraticoCodenation\ProjetoPraticoCodenation\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.dll
 C:\Users\User\Desktop\ProjetoPraticoCodenation\ProjetoPraticoCodenation\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.pdb
 C:\Users\User\Desktop\ProjetoPraticoCodenation\ProjetoPraticoCodenation\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.genruntimeconfig.cache
+C:\Users\Elis\source\repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.RazorAssemblyInfo.cache
+C:\Users\Elis\source\repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.RazorAssemblyInfo.cs
+C:\Users\Elis\source\repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.AssemblyInfoInputs.cache
+C:\Users\Elis\source\repos\squad-4-ad-csharp-women-itau-1\ProjetoPraticoCodenation\obj\Debug\netcoreapp2.2\ProjetoPraticoCodenation.AssemblyInfo.cs

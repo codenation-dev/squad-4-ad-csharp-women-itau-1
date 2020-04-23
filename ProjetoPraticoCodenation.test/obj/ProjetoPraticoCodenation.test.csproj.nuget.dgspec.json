@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.test\\ProjetoPraticoCodenation.test.csproj": {}
+    "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation.test\\ProjetoPraticoCodenation.test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.test\\ProjetoPraticoCodenation.test.csproj": {
+    "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation.test\\ProjetoPraticoCodenation.test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.test\\ProjetoPraticoCodenation.test.csproj",
+        "projectUniqueName": "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation.test\\ProjetoPraticoCodenation.test.csproj",
         "projectName": "ProjetoPraticoCodenation.test",
-        "projectPath": "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.test\\ProjetoPraticoCodenation.test.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.test\\obj\\",
+        "projectPath": "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation.test\\ProjetoPraticoCodenation.test.csproj",
+        "packagesPath": "C:\\Users\\Elis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation.test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Elis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -30,8 +30,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj": {
-                "projectPath": "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj"
+              "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj": {
+                "projectPath": "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj"
               }
             }
           }
@@ -86,24 +86,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj": {
+    "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj",
+        "projectUniqueName": "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj",
         "projectName": "ProjetoPraticoCodenation",
-        "projectPath": "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation\\obj\\",
+        "projectPath": "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj",
+        "packagesPath": "C:\\Users\\Elis\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Elis\\source\\repos\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Elis\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -127,6 +127,26 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.30, )"
+            },
+            "IdentityServer4": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            },
+            "IdentityServer4.AccessTokenValidation": {
+              "target": "Package",
+              "version": "[2.5.0, )"
+            },
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -155,6 +175,14 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[4.0.1, )"
             }
           },
           "imports": [
@@ -167,7 +195,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
