@@ -29,33 +29,34 @@ namespace ProjetoPraticoCodenation.Models
         [Required]
         public DateTime DataCriacao { get; set; }
 
-        [Column("id_evento")]
+        [Column("cd_evento")]
         [Required]
-        public int EventoId { get; set; }
+        [StringLength(50)]
+        public string Evento { get; set; }
 
-        [Column("nivel")]
+        [Column("cd_nivel")]
         [Required]
+        [StringLength(50)]
         public string Nivel { get; set; }
 
-        [Column("id_usuario")]
+        [Column("ds_ambiente")]
         [Required]
-        public int UsuarioId { get; set; }
-
-        [ForeignKey("UsuarioId")]
-        public virtual Usuario Usuario { get; set; }
-
-        [Column("ambiente")]
-        [Required]
+        [StringLength(50)]
         public string Ambiente { get; set; }
 
-        [Column("ip")]
+        [Column("nr_ip_origem")]
         [Required]
-        public string ip { get; set; }
+        [StringLength(50)]
+        public string IPOrigem { get; set; }
 
-
-        [Column("arquivo")]
+        [Column("fl_arquivado")]
         [Required]
-        public int arquivo { get; set; }
+        public Boolean Arquivado { get; set; }
+
+        [Column("nm_usuario_origem")]
+        [Required]
+        [StringLength(50)]
+        public string UsuarioOrigem { get; set; }
 
     }
 }

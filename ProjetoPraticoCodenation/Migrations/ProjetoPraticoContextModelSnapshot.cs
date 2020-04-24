@@ -21,12 +21,18 @@ namespace ProjetoPraticoCodenation.Migrations
 
             modelBuilder.Entity("ProjetoPraticoCodenation.Models.LogErro", b =>
                 {
-                    b.Property<int>("UsuarioId")
-                        .HasColumnName("id_usuario");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id_log")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Ambiente")
                         .IsRequired()
-                        .HasColumnName("ambiente");
+                        .HasColumnName("ds_ambiente")
+                        .HasMaxLength(50);
+
+                    b.Property<bool>("Arquivado")
+                        .HasColumnName("fl_arquivado");
 
                     b.Property<DateTime>("DataCriacao")
                         .HasColumnName("dt_criacao");
@@ -36,31 +42,36 @@ namespace ProjetoPraticoCodenation.Migrations
                         .HasColumnName("ds_log")
                         .HasMaxLength(8000);
 
-                    b.Property<int>("EventoId")
-                        .HasColumnName("id_evento");
+                    b.Property<string>("Evento")
+                        .IsRequired()
+                        .HasColumnName("cd_evento")
+                        .HasMaxLength(50);
 
-                    b.Property<int>("Id")
-                        .HasColumnName("id_log");
+                    b.Property<string>("IPOrigem")
+                        .IsRequired()
+                        .HasColumnName("nr_ip_origem")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Nivel")
                         .IsRequired()
-                        .HasColumnName("nivel");
+                        .HasColumnName("cd_nivel")
+                        .HasMaxLength(50);
 
                     b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnName("ds_titulo_log")
                         .HasMaxLength(250);
 
-                    b.Property<int>("arquivo")
-                        .HasColumnName("arquivo");
+                    b.Property<int?>("UsuarioId");
 
-                    b.Property<string>("ip")
+                    b.Property<string>("UsuarioOrigem")
                         .IsRequired()
-                        .HasColumnName("ip");
+                        .HasColumnName("nm_usuario_origem")
+                        .HasMaxLength(50);
 
-                    b.HasKey("UsuarioId");
+                    b.HasKey("Id");
 
-                    b.HasAlternateKey("Id");
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("log_erros");
                 });
@@ -98,10 +109,9 @@ namespace ProjetoPraticoCodenation.Migrations
 
             modelBuilder.Entity("ProjetoPraticoCodenation.Models.LogErro", b =>
                 {
-                    b.HasOne("ProjetoPraticoCodenation.Models.Usuario", "Usuario")
+                    b.HasOne("ProjetoPraticoCodenation.Models.Usuario")
                         .WithMany("Logs")
-                        .HasForeignKey("UsuarioId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UsuarioId");
                 });
 #pragma warning restore 612, 618
         }

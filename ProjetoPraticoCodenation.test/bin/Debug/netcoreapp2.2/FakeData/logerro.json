@@ -1,52 +1,52 @@
 [
   {
     "Id": 1,
-    "UsuarioId": 1,
+    "UsuarioOrigem": "admin",
     "Titulo": "Erro ao logar no sistema",
     "Descrição": "Erro 504 Gateway Timeout",
     "DataCriacao": "2020-04-07 19:17:08",
-    "EventoId": 1,
-    "NivelId": 1,
-    "AmbienteId": 2
+    "Evento": "1",
+    "Nivel": "1",
+    "Ambiente": "2"
   },
   {
     "Id": 2,
-    "UsuarioId": 2,
+    "UsuarioOrigem": "anigro",
     "Titulo": "Erro carregar pagina",
     "Descrição": "404 não encontrado.",
     "DataCriacao": "2020-04-07 19:17:08",
-    "EventoId": 1,
-    "NivelId": 2,
-    "AmbienteId": 1
+    "Evento": "1",
+    "Nivel": "2",
+    "Ambiente": "Produção"
   },
   {
     "Id": 3,
-    "UsuarioId": 4,
+    "UsuarioOrigem": "elis",
     "Titulo": "Erro acessar site",
     "Descrição": "500 – erro interno do servidor",
     "DataCriacao": "2020-04-01 10:20:30",
-    "EventoId": 2,
-    "NivelId": 1,
-    "AmbienteId": 2
+    "Evento": "50",
+    "Nivel": "2000",
+    "Ambiente": "Desenvolvimento"
   },
   {
     "Id": 4,
-    "UsuarioId": 3,
+    "UsuarioOrigem": "raquel",
     "Titulo": "Erro mudar senha do usuario",
     "Descrição": "403 Proibido",
     "DataCriacao": "2020-04-03 00:00:00",
-    "EventoId": 4,
-    "NivelId": 3,
-    "AmbienteId": 1
+    "Evento": "1000",
+    "Nivel": "3",
+    "Ambiente": "Homologação"
   },
   {
     "Id": 5,
-    "UsuarioId": 4,
+    "UsuarioOrigem": "sheyla",
     "Titulo": "Erro ao acessar relatorio 1000",
     "Descrição": "Erro 503 Serviço Indisponível",
     "DataCriacao": "2020-03-07 13:00:18",
-    "EventoId": 2,
-    "NivelId": 3,
-    "AmbienteId": 2
+    "Evento": "201",
+    "Nivel": "14",
+    "Ambiente": "Desenvolvimento"
   }
 ]

@@ -17,14 +17,16 @@ namespace ProjetoPraticoCodenation.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                // optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=ProjetoPratico;Trusted_Connection=False");
-                optionsBuilder.UseSqlServer(@"Server=DESKTOP-QT7ODQ6\SQLEXPRESS;Database=ProjetoPratico;User Id =user_codenation;Password=12345;Trusted_Connection=False;");
+                //ELIS
+                //optionsBuilder.UseSqlServer(@"Server=DESKTOP-QT7ODQ6\SQLEXPRESS;Database=ProjetoPratico;User Id =user_codenation;Password=12345;Trusted_Connection=False;");
+                //AGATHA
+                optionsBuilder.UseSqlServer(@"Server=DESKTOP-KU0JVQH;Database=ProjetoPratico;User Id =user_codenation;Password=1234;Trusted_Connection=False;");
         }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new LogErroConfiguration());
+            
         }
     }
 }

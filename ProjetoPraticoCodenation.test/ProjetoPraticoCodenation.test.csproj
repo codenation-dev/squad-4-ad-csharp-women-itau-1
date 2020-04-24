@@ -25,4 +25,6 @@
 	  <ProjectReference Include="..\ProjetoPraticoCodenation\ProjetoPraticoCodenation.csproj" />
 	</ItemGroup>
 
+	<ProjectExtensions><VisualStudio><UserProperties fakedata_4logerro_1json__JsonSchema="UsuarioOrigem" /></VisualStudio></ProjectExtensions>
+
 </Project>
