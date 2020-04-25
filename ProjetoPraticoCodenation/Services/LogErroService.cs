@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProjetoPraticoCodenation.Services
 {
-    public class LogErroService
+    public class LogErroService : ILogErroService
     {
         private ProjetoPraticoContext _context;
         public LogErroService(ProjetoPraticoContext context)

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProjetoPraticoCodenation.Services
 {
-    public class UsuarioService
+    public class UsuarioService : IUsuarioService
     {
         private ProjetoPraticoContext _context;
         public UsuarioService(ProjetoPraticoContext context)

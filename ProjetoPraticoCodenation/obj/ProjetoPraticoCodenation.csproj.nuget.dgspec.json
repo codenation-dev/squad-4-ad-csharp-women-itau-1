@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj": {}
+    "D:\\projeto\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj": {
+    "D:\\projeto\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj",
+        "projectUniqueName": "D:\\projeto\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj",
         "projectName": "ProjetoPraticoCodenation",
-        "projectPath": "C:\\Users\\User\\Desktop\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\obj\\",
+        "projectPath": "D:\\projeto\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\ProjetoPraticoCodenation.csproj",
+        "packagesPath": "C:\\Users\\raque\\.nuget\\packages\\",
+        "outputPath": "D:\\projeto\\squad-4-ad-csharp-women-itau-1\\ProjetoPraticoCodenation\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\raque\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -89,6 +89,10 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.4, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
