@@ -11,6 +11,7 @@ using ProjetoPraticoCodenation.Services;
 namespace ProjetoPraticoCodenation.Controllers
 {
     [Route("api/[controller]")]
+    [ApiVersion("1.0")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {

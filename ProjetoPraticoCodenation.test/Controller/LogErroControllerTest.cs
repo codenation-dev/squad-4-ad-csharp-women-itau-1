@@ -10,7 +10,7 @@ namespace ProjetoPraticoCodenation.test.Model
 {
     public class LogErroControllerTest
     {
-
+        
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
@@ -41,7 +41,7 @@ namespace ProjetoPraticoCodenation.test.Model
             var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorNivelAmbiente(nivel, ambiente));
 
             var controller = new LogErroController(fakeService, fakes.Mapper);
-            var result = controller.Get(nivel, ambiente);
+            var result = controller.GetNivelAmbiente(nivel, ambiente);
 
             Assert.IsType<OkObjectResult>(result.Result);
             var actual = (result.Result as OkObjectResult).Value as List<LogErroDTO>;

@@ -12,6 +12,7 @@ namespace ProjetoPraticoCodenation.Controllers
 {
     [Produces("application/json")]
     [ApiController]
+    [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class LogErroController : ControllerBase
     {
@@ -25,9 +26,11 @@ namespace ProjetoPraticoCodenation.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<LogErroDTO> Get(int id)
         {
-           
+
             var logErro = _logErroService.FindById(id);
 
             if (logErro != null)
@@ -40,11 +43,11 @@ namespace ProjetoPraticoCodenation.Controllers
                 return NotFound();
         }
 
-        // GET api/LogErro/{nivel, ambiente}
-        [HttpGet("{id}")]
+        // GET api/LogErro/{nivel, ambiente, teste}
+        [HttpGet("BuscarNivelAmbiente/{nivel, ambiente}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<IEnumerable<LogErroDTO>> Get(string nivel, string ambiente)
+        public ActionResult<IEnumerable<LogErroDTO>> GetNivelAmbiente(string nivel, string ambiente)
         {
             var listaLogErro = _logErroService.LocalizarPorNivelAmbiente(nivel, ambiente);
 
@@ -58,11 +61,14 @@ namespace ProjetoPraticoCodenation.Controllers
                 return NotFound();
         }
 
-        [HttpGet]
+        // GET api/LogErro/{descricao, ambiente}
+        [HttpGet("BuscarDescricaoAmbiente/{Descricao, ambiente}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<LogErroDTO>> GetAll(string descricao, string ambiente)
-        {            
+        {
             var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente);
-            
+
             if (listaLogErro != null)
             {
                 var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
@@ -73,7 +79,7 @@ namespace ProjetoPraticoCodenation.Controllers
                 return NotFound();
 
         }
-
+ 
         [HttpPost]
         public ActionResult<LogErroDTO> Post([FromBody]LogErroDTO value)
         {
@@ -99,7 +105,7 @@ namespace ProjetoPraticoCodenation.Controllers
 
             return Ok(retorno);
         }
-
+  
         [HttpPut]
         public ActionResult<LogErroDTO> Put([FromBody] LogErroDTO value)
         {
@@ -135,6 +141,6 @@ namespace ProjetoPraticoCodenation.Controllers
             _logErroService.Remover(id);
 
             return Ok();
-        }
+        } 
     }
 }
