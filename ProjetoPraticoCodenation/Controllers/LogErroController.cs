@@ -24,6 +24,22 @@ namespace ProjetoPraticoCodenation.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet("{id}")]
+        public ActionResult<LogErroDTO> Get(int id)
+        {
+           
+            var logErro = _logErroService.FindById(id);
+
+            if (logErro != null)
+            {
+                var retorno = _mapper.Map<LogErroDTO>(logErro);
+
+                return Ok(retorno);
+            }
+            else
+                return NotFound();
+        }
+
         // GET api/LogErro/{nivel, ambiente}
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -40,6 +56,48 @@ namespace ProjetoPraticoCodenation.Controllers
             }
             else
                 return NotFound();
+        }
+
+        [HttpGet]
+        public ActionResult<IEnumerable<LogErroDTO>> GetAll(string descricao, string ambiente)
+        {            
+            var listaLogErro = _logErroService.LocalizarPorNivelAmbiente(descricao, ambiente)
+            
+            if (listaLogErro != null)
+            {
+                var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
+
+                return Ok(retorno);
+            }
+            else
+                return NotFound();
+
+        }
+
+        [HttpPost]
+        public ActionResult<LogErroDTO> Post([FromBody]LogErroDTO value)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ErrorResponse.FromModelState(ModelState));
+
+            var logErro = new logErro()
+            {
+                Titulo = value.Titulo,
+                Descricao = value.Descricao,
+                Nivel = value.Nivel,
+                UsuarioOrigem = value.UsuarioOrigem,
+                Evento = value.Evento,
+                IPOrigem = value.IPOrigem,
+                eArquivado = value.Arquivado,
+                Ambiente = value.Ambiente,
+                DataCriacao = value.DataCriacao
+            };
+
+            var retornoLogErro = _logErroService.Salvar(logErro);
+
+            var retorno = _mapper.Map<LogErroDTO>(retornoLogErro);
+
+            return Ok(retorno);
         }
 
         [HttpDelete]

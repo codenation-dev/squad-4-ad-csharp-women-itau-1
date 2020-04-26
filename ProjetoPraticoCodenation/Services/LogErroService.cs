@@ -25,6 +25,14 @@ namespace ProjetoPraticoCodenation.Services
                                 .ToList();
         }
 
+         public IList<LogErro> LocalizarPorNivelAmbiente(string descricao, string ambiente)
+        {
+            return _context.Logs.Where(x => x.Descricao == descricao).
+                                 Where(x => x.Ambiente == ambiente).
+                                 Distinct().
+                                 ToList();
+        }
+
 
         public void Remover(int id)
         {

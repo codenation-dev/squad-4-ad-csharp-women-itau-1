@@ -9,6 +9,8 @@ namespace ProjetoPraticoCodenation.Services
 
         IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente);
 
+        IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente);
+
         void Remover(int id);
 
         LogErro Save(LogErro log);
