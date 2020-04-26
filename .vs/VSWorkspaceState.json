@@ -1,7 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\ProjetoPraticoCodenation"
+    "\\ProjetoPraticoCodenation",
+    "\\ProjetoPraticoCodenation.test",
+    "\\ProjetoPraticoCodenation.test\\FakeData",
+    "\\ProjetoPraticoCodenation\\Controllers",
+    "\\ProjetoPraticoCodenation\\DTOs",
+    "\\ProjetoPraticoCodenation\\Migrations",
+    "\\ProjetoPraticoCodenation\\Models",
+    "\\ProjetoPraticoCodenation\\Properties",
+    "\\ProjetoPraticoCodenation\\Services"
   ],
+  "SelectedNode": "\\ProjetoPraticoCodenation\\Services",
   "PreviewInSolutionExplorer": false
 }

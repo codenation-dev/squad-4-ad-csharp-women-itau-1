@@ -24,17 +24,23 @@ namespace ProjetoPraticoCodenation
     public class Startup
     {
         public IConfiguration Configuration { get; }
-
-        public Startup(IConfiguration configuration)
+        public StartupIdentityServer IdentitServerStartup { get; }
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+
+            if (!environment.IsEnvironment("Testing"))
+                IdentitServerStartup = new StartupIdentityServer(environment);
         }
-        // This method gets called by the runtime. Use this method to add services to the container.
+
+
         public void ConfigureServices(IServiceCollection services)
         {
 
             services.AddMvcCore()
                 .AddApiExplorer()
+                .AddAuthorization()
+                .AddJsonFormatters()
                 .AddVersionedApiExplorer(p =>
                 {
                     p.GroupNameFormat = "'v'VVV";
@@ -42,15 +48,23 @@ namespace ProjetoPraticoCodenation
                 });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
             services.AddDbContext<ProjetoPraticoContext>();
-
             services.AddScoped<IUsuarioService, UsuarioService>();
             services.AddScoped<ILogErroService, LogErroService>();
-
             services.AddAutoMapper(typeof(Startup));
-
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
+            if (IdentitServerStartup != null)
+                IdentitServerStartup.ConfigureServices(services);
+
+            // config autenticação para API - jwt bearer 
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+                    options.Audience = "codenation";
+                });
 
             // config versionamento
             services.AddApiVersioning(p =>
@@ -87,6 +101,13 @@ namespace ProjetoPraticoCodenation
                 app.UseDeveloperExceptionPage();
             }
 
+            //identityServer
+            app.UseAuthentication();
+            app.UseIdentityServer();
+
+            if (IdentitServerStartup != null)
+                IdentitServerStartup.Configure(app, env);
+
             // swagger
             app.UseSwagger();
 
@@ -104,6 +125,7 @@ namespace ProjetoPraticoCodenation
                 options.DocExpansion(DocExpansion.List);
             });
 
+            app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
         }
     }

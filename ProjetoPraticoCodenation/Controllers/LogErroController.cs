@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using ProjetoPraticoCodenation.Models;
 using System.Web.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProjetoPraticoCodenation.Controllers
 {
@@ -14,6 +15,8 @@ namespace ProjetoPraticoCodenation.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
+    [Authorize]
+
     public class LogErroController : ControllerBase
     {
         private readonly ILogErroService _logErroService;

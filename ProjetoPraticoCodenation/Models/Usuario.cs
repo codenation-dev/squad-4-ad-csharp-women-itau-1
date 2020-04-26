@@ -33,5 +33,10 @@ namespace ProjetoPraticoCodenation.Models
         [Column("cd_token")]
         [StringLength(255)]
         public string Token { get; set; }
+
+        [Column("email")]
+        [StringLength(100)]
+        [Required]
+        public string Email { get; set; }
     }
 }

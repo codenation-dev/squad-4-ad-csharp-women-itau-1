@@ -33,6 +33,7 @@ namespace ProjetoPraticoCodenation.test.Model
         [InlineData("nm_login", false, typeof(string), 30)]
         [InlineData("ds_senha", false, typeof(string), 255)]
         [InlineData("cd_token", true, typeof(string), 255)]
+        [InlineData("email", true, typeof(string), 100)]
 
         public void Devera_Ter_Campos(string campoNome, bool ehNulo, Type campoTipo, int? campoTamanho)
         {
