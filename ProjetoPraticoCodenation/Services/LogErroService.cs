@@ -25,7 +25,7 @@ namespace ProjetoPraticoCodenation.Services
                                 .ToList();
         }
 
-         public IList<LogErro> LocalizarPorNivelAmbiente(string descricao, string ambiente)
+         public IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente)
         {
             return _context.Logs.Where(x => x.Descricao == descricao).
                                  Where(x => x.Ambiente == ambiente).
@@ -45,7 +45,7 @@ namespace ProjetoPraticoCodenation.Services
             }
         }
 
-        public LogErro Save(LogErro log)
+        public LogErro Salvar(LogErro log)
         {
             var existe = _context.Logs
                           .Where(x => x.Id == log.Id)

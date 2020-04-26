@@ -13,6 +13,6 @@ namespace ProjetoPraticoCodenation.Services
 
         void Remover(int id);
 
-        LogErro Save(LogErro log);
+        LogErro Salvar(LogErro log);
     }
 }

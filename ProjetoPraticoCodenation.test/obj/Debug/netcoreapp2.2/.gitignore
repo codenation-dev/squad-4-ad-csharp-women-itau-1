@@ -3,3 +3,4 @@
 *.test.dll
 *.test.pdb
 *.test.csproj.CoreCompileInputs.cache
+*.test.csproj.FileListAbsolute.txt

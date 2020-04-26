@@ -14,6 +14,10 @@ namespace ProjetoPraticoCodenation.Models
         {
         }
 
+        public ProjetoPraticoContext()
+        {
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)

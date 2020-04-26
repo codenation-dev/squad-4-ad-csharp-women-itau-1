@@ -42,7 +42,7 @@ namespace ProjetoPraticoCodenation.test
             using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
             {
                 var service = new LogErroService(context);
-                var actual = service.Save(fakeLogErro);
+                var actual = service.Salvar(fakeLogErro);
 
                 Assert.NotEqual(0, actual.Id);
             }

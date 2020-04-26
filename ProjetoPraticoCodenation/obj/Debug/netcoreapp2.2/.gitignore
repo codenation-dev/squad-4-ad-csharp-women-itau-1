@@ -3,3 +3,5 @@
 *.pdb
 *.dll
 *.csproj.CoreCompileInputs.cache
+*.csproj.FileListAbsolute.txt
+*.RazorAssemblyInfo.cs

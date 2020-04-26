@@ -5,15 +5,15 @@ using ProjetoPraticoCodenation.DTOs;
 using ProjetoPraticoCodenation.Services;
 using System;
 using System.Collections.Generic;
-using System.Text;
-
+using ProjetoPraticoCodenation.Models;
+using System.Web.Http;
 
 namespace ProjetoPraticoCodenation.Controllers
 {
     [Produces("application/json")]
     [ApiController]
     [Route("api/v{version:apiVersion}/[controller]")]
-    class LogErroController : ControllerBase
+    public class LogErroController : ControllerBase
     {
         private readonly ILogErroService _logErroService;
         private readonly IMapper _mapper;
@@ -60,8 +60,8 @@ namespace ProjetoPraticoCodenation.Controllers
 
         [HttpGet]
         public ActionResult<IEnumerable<LogErroDTO>> GetAll(string descricao, string ambiente)
-        {            
-            var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente)
+        {
+            var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente);
             
             if (listaLogErro != null)
             {
@@ -78,9 +78,9 @@ namespace ProjetoPraticoCodenation.Controllers
         public ActionResult<LogErroDTO> Post([FromBody]LogErroDTO value)
         {
             if (!ModelState.IsValid)
-                return BadRequest(ErrorResponse.FromModelState(ModelState));
+                return BadRequest(ModelState);
 
-            var logErro = new logErro()
+            var logErro = new LogErro()
             {
                 Titulo = value.Titulo,
                 Descricao = value.Descricao,
@@ -88,7 +88,7 @@ namespace ProjetoPraticoCodenation.Controllers
                 UsuarioOrigem = value.UsuarioOrigem,
                 Evento = value.Evento,
                 IPOrigem = value.IPOrigem,
-                eArquivado = value.Arquivado,
+                Arquivado = value.Arquivado,
                 Ambiente = value.Ambiente,
                 DataCriacao = value.DataCriacao
             };
