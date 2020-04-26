@@ -60,7 +60,7 @@ namespace ProjetoPraticoCodenation.Controllers
 
         [HttpGet]
         public ActionResult<IEnumerable<LogErroDTO>> GetAll(string descricao, string ambiente)
-        {
+        {            
             var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente);
             
             if (listaLogErro != null)
@@ -95,6 +95,32 @@ namespace ProjetoPraticoCodenation.Controllers
 
             var retornoLogErro = _logErroService.Salvar(logErro);
 
+            var retorno = _mapper.Map<LogErroDTO>(retornoLogErro);
+
+            return Ok(retorno);
+        }
+
+        [HttpPut]
+        public ActionResult<LogErroDTO> Put([FromBody] LogErroDTO value)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var logErro = new LogErro()
+            {
+                Titulo = value.Titulo,
+                Descricao = value.Descricao,
+                Nivel = value.Nivel,
+                UsuarioOrigem = value.UsuarioOrigem,
+                Evento = value.Evento,
+                IPOrigem = value.IPOrigem,
+                Arquivado = value.Arquivado,
+                Ambiente = value.Ambiente,
+                DataCriacao = value.DataCriacao
+            };
+
+            var retornoLogErro = _logErroService.Salvar(logErro);
+            
             var retorno = _mapper.Map<LogErroDTO>(retornoLogErro);
 
             return Ok(retorno);
