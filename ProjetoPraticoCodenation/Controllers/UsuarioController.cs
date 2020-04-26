@@ -16,6 +16,7 @@ namespace ProjetoPraticoCodenation.Controllers
     {
         private IUsuarioService _usuarioService;
         private IMapper _mapper;
+
         public UsuarioController(IUsuarioService usuarioService, IMapper mapper)
         {
             _usuarioService = usuarioService;
@@ -38,38 +39,6 @@ namespace ProjetoPraticoCodenation.Controllers
                 return NotFound();
         }
 
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<IEnumerable<LogErroDTO>> Get(string nivel, string ambiente)
-        {
-            var listaLogErro = _logErroService.LocalizarPorNivelAmbiente(nivel, ambiente);
-
-            if (listaLogErro != null)
-            {
-                var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
-
-                return Ok(retorno);
-            }
-            else
-                return NotFound();
-        }
-
-        [HttpGet]
-        public ActionResult<IEnumerable<LogErroDTO>> GetAll(string descricao, string ambiente)
-        {            
-            var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente)
-            
-            if (listaLogErro != null)
-            {
-                var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
-
-                return Ok(retorno);
-            }
-            else
-                return NotFound();
-
-        }
 
         [HttpPost]
         public ActionResult<LogErroDTO> Post([FromBody]LogErroDTO value)
@@ -96,18 +65,6 @@ namespace ProjetoPraticoCodenation.Controllers
 
             return Ok(retorno);
         }
-
-        [HttpDelete]
-        public ActionResult Delete(int id)
-        {
-            if (id <= 0)
-                return BadRequest("id invalido");
-
-            _logErroService.Remover(id);
-
-            return Ok();
-        }
-
 
     }
 }
