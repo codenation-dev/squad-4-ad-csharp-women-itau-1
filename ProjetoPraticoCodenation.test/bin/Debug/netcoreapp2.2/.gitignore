@@ -1,0 +1,5 @@
+*.test.dll
+*.test.pdb
+*.test.deps.json
+*.pdb
+*.dll

@@ -18,6 +18,25 @@ namespace ProjetoPraticoCodenation.Services
             return _context.Logs.Find(id);
         }
 
+        public IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente)
+        {
+            return _context.Logs.Where(x => x.Nivel == nivel)
+                                .Where(x => x.Ambiente == ambiente)
+                                .ToList();
+        }
+
+
+        public void Remover(int id)
+        {
+            var existe = FindById(id);
+
+            if (existe != null)
+            {
+                _context.Logs.Remove(existe);
+                _context.SaveChanges();
+            }
+        }
+
         public LogErro Save(LogErro log)
         {
             var existe = _context.Logs

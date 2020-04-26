@@ -1,0 +1,4 @@
+*.runtimeconfig.dev.json
+*.pdb
+*.dll
+*.deps.json

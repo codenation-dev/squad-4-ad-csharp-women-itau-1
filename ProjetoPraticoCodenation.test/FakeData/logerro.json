@@ -5,18 +5,18 @@
     "Titulo": "Erro ao logar no sistema",
     "Descrição": "Erro 504 Gateway Timeout",
     "DataCriacao": "2020-04-07 19:17:08",
-    "Evento": "1",
-    "Nivel": "1",
-    "Ambiente": "2"
+    "Evento": "1000",
+    "Nivel": "error",
+    "Ambiente": "Produção"
   },
   {
     "Id": 2,
     "UsuarioOrigem": "anigro",
     "Titulo": "Erro carregar pagina",
     "Descrição": "404 não encontrado.",
-    "DataCriacao": "2020-04-07 19:17:08",
-    "Evento": "1",
-    "Nivel": "2",
+    "DataCriacao": "2019-05-24 9:53:10",
+    "Evento": "1000",
+    "Nivel": "error",
     "Ambiente": "Produção"
   },
   {
@@ -25,8 +25,8 @@
     "Titulo": "Erro acessar site",
     "Descrição": "500 – erro interno do servidor",
     "DataCriacao": "2020-04-01 10:20:30",
-    "Evento": "50",
-    "Nivel": "2000",
+    "Evento": "300",
+    "Nivel": "warning",
     "Ambiente": "Desenvolvimento"
   },
   {
@@ -35,8 +35,8 @@
     "Titulo": "Erro mudar senha do usuario",
     "Descrição": "403 Proibido",
     "DataCriacao": "2020-04-03 00:00:00",
-    "Evento": "1000",
-    "Nivel": "3",
+    "Evento": "100",
+    "Nivel": "debug",
     "Ambiente": "Homologação"
   },
   {
@@ -45,8 +45,8 @@
     "Titulo": "Erro ao acessar relatorio 1000",
     "Descrição": "Erro 503 Serviço Indisponível",
     "DataCriacao": "2020-03-07 13:00:18",
-    "Evento": "201",
-    "Nivel": "14",
+    "Evento": "11",
+    "Nivel": "error",
     "Ambiente": "Desenvolvimento"
   }
 ]

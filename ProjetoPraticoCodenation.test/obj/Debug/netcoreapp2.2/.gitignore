@@ -1,2 +1,5 @@
 *.test.csprojAssemblyReference.cache
 *.test.assets.cache
+*.test.dll
+*.test.pdb
+*.test.csproj.CoreCompileInputs.cache
