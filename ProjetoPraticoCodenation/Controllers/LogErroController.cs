@@ -61,7 +61,7 @@ namespace ProjetoPraticoCodenation.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<LogErroDTO>> GetAll(string descricao, string ambiente)
         {            
-            var listaLogErro = _logErroService.LocalizarPorNivelAmbiente(descricao, ambiente)
+            var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente)
             
             if (listaLogErro != null)
             {
