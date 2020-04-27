@@ -48,6 +48,20 @@ namespace ProjetoPraticoCodenation.test
             }
         }
 
+        [Fact]
+        public void Devera_Alterar_LogErro()
+        {
+            var fakeContext = new FakeContext("AlterarLogErro");
+           
+            var fakeLogErro = fakeContext.GetFakeData<LogErro>().Last();
+            fakeContext.Arquivado = "true";
+            var atual = fakeLogErro.Arquivado(fakeLogErro);
+
+            Assert.NotEqual(0, actual.Id);
+            Assert.Equal(fakeLogErro.Arquivado, atual.Arquivado);
+        }
+
+        
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
@@ -85,6 +99,27 @@ namespace ProjetoPraticoCodenation.test
                 var service = new LogErroService(context);
 
                 var actual = service.LocalizarPorNivelAmbiente(nivel, ambiente);
+
+                Assert.Equal(expected, actual, new LogErroComparer());
+            }
+        }
+
+        [Theory]
+        [InlineData("error", "Produção")]
+        [InlineData("debug", "Homologacao")]
+        public void Deve_Retornar_Log_Por_Descricao_e_Ambiente(string descricao, string ambiente)
+        {
+            var fakeContext = new FakeContext("LocalizarPorDescricaoAmbiente");
+            fakeContext.FillWith<LogErro>();
+
+            using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
+            {
+                var expected = fakeContext.GetFakeData<LogErro>().Where(x => x.Descricao == descricao)
+                                                                .Where(x => x.Ambiente == ambiente);
+
+                var service = new LogErroService(context);
+
+                var actual = service.LocalizarPorDescricaoAmbiente(descricao, ambiente);
 
                 Assert.Equal(expected, actual, new LogErroComparer());
             }

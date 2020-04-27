@@ -97,6 +97,13 @@ namespace ProjetoPraticoCodenation.test
                                                             .Where(l => l.Ambiente == ambiente)
                                                             .ToList());
 
+            service.Setup(x => x.LocalizarPorDescricaoAmbiente(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns((string descricao, string ambiente) => Get<LogErro>().Where(l => l.Descricao == descricao)
+                                                            .Where(l => l.Ambiente == ambiente)
+                                                            .ToList());
+
+
+
             return service;
         }
 
