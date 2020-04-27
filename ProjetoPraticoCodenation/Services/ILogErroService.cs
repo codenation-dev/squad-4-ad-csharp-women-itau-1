@@ -11,6 +11,8 @@ namespace ProjetoPraticoCodenation.Services
 
         IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente);
 
+        IList<LogErro> LocalizarPorOrigemAmbiente(string origem, string ambiente);
+
         void Remover(int id);
 
         LogErro Salvar(LogErro log);

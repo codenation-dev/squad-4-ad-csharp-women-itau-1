@@ -47,7 +47,7 @@ namespace ProjetoPraticoCodenation.Models
         [Column("nr_ip_origem")]
         [Required]
         [StringLength(50)]
-        public string IPOrigem { get; set; }
+        public string Origem { get; set; }
 
         [Column("fl_arquivado")]
         [Required]

@@ -22,9 +22,12 @@ namespace ProjetoPraticoCodenation.Models
         {
             if (!optionsBuilder.IsConfigured)
                 //ELIS
-               // optionsBuilder.UseSqlServer(@"Server=DESKTOP-QT7ODQ6\SQLEXPRESS;Database=ProjetoPratico;User Id =user_codenation;Password=12345;Trusted_Connection=False;");
+                // optionsBuilder.UseSqlServer(@"Server=DESKTOP-QT7ODQ6\SQLEXPRESS;Database=ProjetoPratico;User Id =user_codenation;Password=12345;Trusted_Connection=False;");
                 //AGATHA
-                optionsBuilder.UseSqlServer(@"Server=DESKTOP-KU0JVQH;Database=ProjetoPratico;User Id =user_codenation;Password=1234;Trusted_Connection=False;");
+                //optionsBuilder.UseSqlServer(@"Server=DESKTOP-KU0JVQH;Database=ProjetoPratico;User Id =user_codenation;Password=1234;Trusted_Connection=False;");
+                //RAQUEL
+                optionsBuilder.UseSqlServer(@"Server=DESKTOP-52JLAFC\SQLEXPRESS;Database=ProjetoPratico;User Id =codenation;Password=1234;Trusted_Connection=False;");
+
         }
 
 

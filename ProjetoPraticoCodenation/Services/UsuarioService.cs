@@ -18,6 +18,11 @@ namespace ProjetoPraticoCodenation.Services
             return _context.Usuarios.Find(id);
         }
 
+        public IList<Usuario> FindByName(string nome)
+        {
+            return _context.Usuarios.Where(x => x.Nome == nome).ToList();           
+        }
+
         public Usuario Save(Usuario usuario)
         {
             var existe = _context.Usuarios

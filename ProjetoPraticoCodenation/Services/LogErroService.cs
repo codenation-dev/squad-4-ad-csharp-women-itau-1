@@ -33,6 +33,13 @@ namespace ProjetoPraticoCodenation.Services
                                  ToList();
         }
 
+        public IList<LogErro> LocalizarPorOrigemAmbiente(string origem, string ambiente)
+        {
+            return _context.Logs.Where(x => x.Origem == origem)
+                                .Where(x => x.Ambiente == ambiente)
+                                .ToList();
+        }
+
 
         public void Remover(int id)
         {
@@ -60,7 +67,7 @@ namespace ProjetoPraticoCodenation.Services
                 existe.Nivel = log.Nivel;
                 existe.UsuarioOrigem = log.UsuarioOrigem;
                 existe.Evento = log.Evento;
-                existe.IPOrigem = log.IPOrigem;
+                existe.Origem = log.Origem;
                 existe.Arquivado = log.Arquivado;
                 existe.Ambiente = log.Ambiente;
                 existe.DataCriacao = log.DataCriacao;
