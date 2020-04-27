@@ -37,14 +37,14 @@ namespace ProjetoPraticoCodenation.ConfigStartup
                 new Client
                 {
                     ClientName = "Client Projeto Final",
-                    ClientId = "codenation.api_client",
+                    ClientId = "codenation_projetoFinal.api_client",
                     AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
                     ClientSecrets = {
-                        new Secret("codenation.api_secret".Sha256())
+                        new Secret("codenation_projetoFinal.api_secret".Sha256())
                     },
                     AllowedScopes = {
                         IdentityServerConstants.StandardScopes.OpenId,
-                        "codenation"
+                        "codenation_projetoFinal"
                     },
                     AlwaysIncludeUserClaimsInIdToken = true
                 }

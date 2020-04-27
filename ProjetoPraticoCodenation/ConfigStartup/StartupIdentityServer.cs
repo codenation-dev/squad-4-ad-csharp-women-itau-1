@@ -11,8 +11,6 @@ namespace ProjetoPraticoCodenation.ConfigStartup
 {
     public class StartupIdentityServer
     {
-        private object identitySrvConfig;
-
         public IHostingEnvironment Environment { get; }
 
         public StartupIdentityServer(IHostingEnvironment environment)

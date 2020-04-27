@@ -53,28 +53,28 @@ namespace ProjetoPraticoCodenation.Controllers
         }
 
 
-        [HttpGet("getToken")]
-        public async Task<ActionResult<TokenResponse>> GetToken([FromBody]TokenDTO value)
+        [HttpPost("getToken")]
+        public async Task<ActionResult<TokenResponse>> AuthToken([FromBody]TokenDTO value)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             //endpoint token- http://localhost:5000/connect/token
 
-            var disco = await DiscoveryClient.GetAsync("http://localhost:5000");
+            var disco = await DiscoveryClient.GetAsync("http://localhost:5001");
 
-            var TokenClient = new TokenClient(disco.TokenEndpoint, "codenation.api_client", "codenation.api_secret");
+            var TokenClient = new TokenClient(disco.TokenEndpoint, "codenation_projetoFinal.api_client", "codenation_projetoFinal.api_secret");
 
 
             var httpClient = new HttpClient();
             var tokenResponse = await httpClient.RequestPasswordTokenAsync(new PasswordTokenRequest
             {
                 Address = disco.TokenEndpoint,
-                ClientId = "codenation.api_client",
-                ClientSecret = "codenation.api_secret",
+                ClientId = "codenation_projetoFinal.api_client",
+                ClientSecret = "codenation_projetoFinal.api_secret",
                 UserName = value.UserName,
                 Password = value.Password,
-                Scope = "codenation"
+                Scope = "codenation_projetoFinal"
             });
 
             if (!tokenResponse.IsError)

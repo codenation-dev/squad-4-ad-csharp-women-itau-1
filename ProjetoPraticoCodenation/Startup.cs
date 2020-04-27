@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
@@ -36,16 +37,18 @@ namespace ProjetoPraticoCodenation
 
         public void ConfigureServices(IServiceCollection services)
         {
-
+            //add politica para user Ingrid
             services.AddMvcCore()
-                .AddApiExplorer()
-                .AddAuthorization()
-                .AddJsonFormatters()
-                .AddVersionedApiExplorer(p =>
-                {
-                    p.GroupNameFormat = "'v'VVV";
-                    p.SubstituteApiVersionInUrl = true;
-                });
+           .AddAuthorization(opt => {
+               opt.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Email, "agatha@gmail.com"));
+           })
+           .AddJsonFormatters()
+           .AddApiExplorer()
+           .AddVersionedApiExplorer(p =>
+           {
+               p.GroupNameFormat = "'v'VVV";
+               p.SubstituteApiVersionInUrl = true;
+           });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<ProjetoPraticoContext>();
@@ -57,14 +60,6 @@ namespace ProjetoPraticoCodenation
             if (IdentitServerStartup != null)
                 IdentitServerStartup.ConfigureServices(services);
 
-            // config autenticação para API - jwt bearer 
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
-                {
-                    options.Authority = "http://localhost:5000";
-                    options.RequireHttpsMetadata = false;
-                    options.Audience = "codenation";
-                });
 
             // config versionamento
             services.AddApiVersioning(p =>
@@ -76,16 +71,41 @@ namespace ProjetoPraticoCodenation
 
             services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 
-            services.AddSwaggerGen(x =>
+            services.AddSwaggerGen(c =>
             {
-                x.SwaggerDoc("V1", new Info
-                {
-                    Title = "API Projeto Final Codenation - Squad 4",
-                    Version = "V1",
-                    Description = "Projeto final desenvolvido pelo squad 4 do curso de aceleração em c# promovido pela Codenation. Neste projeto vamos implementar uma web API para centralizar registros de erros de aplicações.",
-                    Contact = new Contact() { Name = "", Email = "" }
+                c.AddSecurityRequirement(
+                    new Dictionary<string, IEnumerable<string>> {
+                            { "Bearer", new string[] { } }
                 });
+
+                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+                {
+                    Name = "Authorization",
+                    In = "header",
+                    Type = "apiKey",
+                    Description = "Insira o token JWT desta maneira: Bearer {seu token}"
+                });
+
+                /*{ x.SwaggerDoc("V1", new Info
+                      {
+                          Title = "API Projeto Final Codenation - Squad 4",
+                          Version = "V1",
+                          Description = "Projeto final desenvolvido pelo squad 4 do curso de aceleração em c# promovido pela Codenation. Neste projeto vamos implementar uma web API para centralizar registros de erros de aplicações.",
+                          Contact = new Contact() { Name = "", Email = "" }
+                      });
+                  })*/
             });
+
+
+            // config autenticação para API - jwt bearer 
+            services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                    options.Authority = "http://localhost:5000";
+                    options.RequireHttpsMetadata = false;
+                    options.Audience = "codenation_projetoFinal";
+                });
+
 
             services.Configure<ApiBehaviorOptions>(opt =>
             {
@@ -125,7 +145,7 @@ namespace ProjetoPraticoCodenation
                 options.DocExpansion(DocExpansion.List);
             });
 
-            app.UseAuthentication();
+
             app.UseMvcWithDefaultRoute();
         }
     }
