@@ -27,7 +27,7 @@ namespace ProjetoPraticoCodenation.DTOs
         public string Ambiente { get; set; }
 
         [Required]
-        public string IPOrigem { get; set; }
+        public string Origem { get; set; }
 
         [Required]
         public Boolean Arquivado { get; set; }

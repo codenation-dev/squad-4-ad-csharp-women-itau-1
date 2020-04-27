@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using Xunit;
 using System.Linq;
 using ProjetoPraticoCodenation.Models;
@@ -47,26 +46,30 @@ namespace ProjetoPraticoCodenation.test
                 Assert.NotEqual(0, actual.Id);
             }
         }
-
+        /*
         [Fact]
         public void Devera_Alterar_LogErro()
         {
             var fakeContext = new FakeContext("AlterarLogErro");
            
             var fakeLogErro = fakeContext.GetFakeData<LogErro>().Last();
-            fakeContext.Arquivado = "true";
-            var atual = fakeLogErro.Arquivado(fakeLogErro);
+            fakeLogErro.Arquivado = true;
+           
+            using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
+            {
+                var service = new LogErroService(context);
+                var actual = service.Arquivar(fakeLogErro);
 
-            Assert.NotEqual(0, actual.Id);
-            Assert.Equal(fakeLogErro.Arquivado, atual.Arquivado);
+                Assert.Equal(fakeLogErro.Arquivado, actual.Arquivado);
+            }
         }
 
-        
+        */
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
         [InlineData(3)]
-        public void Deve_Remover_LogErro(int id)
+        public void Deve_Remover_LogErro_1(int id)
         {
             var fakeContext = new FakeContext("RemoverLogErro");
             fakeContext.FillWith<LogErro>();

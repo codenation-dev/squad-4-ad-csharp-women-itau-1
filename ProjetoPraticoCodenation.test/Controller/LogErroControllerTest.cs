@@ -50,11 +50,11 @@ namespace ProjetoPraticoCodenation.test.Model
         }
 
         [Theory]
-        [InlineData("error", "Produção")]
-        [InlineData("debug", "Homologacao")]
+        [InlineData("500 – erro interno do servidor", "Desenvolvimento")]
+        [InlineData("404 não encontrado.", "Produção")]
         public void Deve_Retornar_Ok_Pesquisa_Por_Descricao_Ambiente(string descricao, string ambiente)
         {
-            var fakes = new FakeContext("LogErroControllerTest");
+            var fakes = new FakeContext("LogErroControllerTestDescricao");
             var fakeService = fakes.FakeAccelerationService().Object;
             var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorDescricaoAmbiente(descricao, ambiente));
 
@@ -89,7 +89,7 @@ namespace ProjetoPraticoCodenation.test.Model
             Assert.Equal(expected.Nivel, actual.Nivel);
             Assert.Equal(expected.Evento, actual.Evento);
             Assert.Equal(expected.DataCriacao, actual.DataCriacao);
-            Assert.Equal(expected.IPOrigem, actual.IPOrigem);
+            Assert.Equal(expected.Origem, actual.Origem);
             Assert.Equal(expected.UsuarioOrigem, actual.UsuarioOrigem);
             Assert.Equal(expected.Arquivado, actual.Arquivado);
 
@@ -102,9 +102,9 @@ namespace ProjetoPraticoCodenation.test.Model
             var fakeService = fakes.FakeAccelerationService().Object;
 
             var expected = fakes.Get<LogErroDTO>().First();
-            expected.Arquivado = fakes.Get<LogErroDTO>().Where(x => x.Arquivado == expected.Arquivado).FirstOrDefault();
+            expected = fakes.Get<LogErroDTO>().Where(x => x.Arquivado == expected.Arquivado).FirstOrDefault();
 
-            var controller = new LogErroController(fakeService);
+            var controller = new LogErroController(fakeService, fakes.Mapper);
             
             var result = controller.Put(expected);
 
@@ -120,7 +120,7 @@ namespace ProjetoPraticoCodenation.test.Model
             Assert.Equal(expected.Nivel, actual.Nivel);
             Assert.Equal(expected.Evento, actual.Evento);
             Assert.Equal(expected.DataCriacao, actual.DataCriacao);
-            Assert.Equal(expected.IPOrigem, actual.IPOrigem);
+            Assert.Equal(expected.Origem, actual.Origem);
             Assert.Equal(expected.UsuarioOrigem, actual.UsuarioOrigem);
             Assert.Equal(expected.Arquivado, actual.Arquivado);
         }

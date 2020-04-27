@@ -96,7 +96,7 @@ namespace ProjetoPraticoCodenation.Controllers
                 Nivel = value.Nivel,
                 UsuarioOrigem = value.UsuarioOrigem,
                 Evento = value.Evento,
-                IPOrigem = value.IPOrigem,
+                Origem = value.Origem,
                 Arquivado = value.Arquivado,
                 Ambiente = value.Ambiente,
                 DataCriacao = value.DataCriacao
@@ -122,7 +122,7 @@ namespace ProjetoPraticoCodenation.Controllers
                 Nivel = value.Nivel,
                 UsuarioOrigem = value.UsuarioOrigem,
                 Evento = value.Evento,
-                IPOrigem = value.IPOrigem,
+                Origem = value.Origem,
                 Arquivado = value.Arquivado,
                 Ambiente = value.Ambiente,
                 DataCriacao = value.DataCriacao

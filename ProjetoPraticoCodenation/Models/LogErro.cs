@@ -51,7 +51,7 @@ namespace ProjetoPraticoCodenation.Models
 
         [Column("fl_arquivado")]
         [Required]
-        public Boolean Arquivado { get; set; }
+        public bool Arquivado { get; set; }
 
         [Column("nm_usuario_origem")]
         [Required]
