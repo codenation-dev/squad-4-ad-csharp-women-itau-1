@@ -18,14 +18,27 @@ namespace ProjetoPraticoCodenation.Services
             return _context.Logs.Find(id);
         }
 
-        public IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente)
+        public IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            return _context.Logs.Where(x => x.Nivel == nivel)
-                                .Where(x => x.Ambiente == ambiente)
-                                .ToList();
+            if (ordenarPorNivel)
+            {
+                return _context.Logs.Where(x => x.Nivel == nivel)
+                                    .Where(x => x.Ambiente == ambiente)
+                                    .OrderBy(x => x.Nivel)
+                                    .ToList();
+            }
+            else
+            {
+
+                return _context.Logs.Where(x => x.Nivel == nivel)
+                                    .Where(x => x.Ambiente == ambiente)
+
+                                    .ToList();
+            }
+
         }
 
-         public IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente)
+        public IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente)
         {
             return _context.Logs.Where(x => x.Descricao == descricao).
                                  Where(x => x.Ambiente == ambiente).

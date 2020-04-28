@@ -3,6 +3,9 @@ using Xunit;
 using System.Linq;
 using ProjetoPraticoCodenation.Models;
 using ProjetoPraticoCodenation.Services;
+using System.Collections.Generic;
+using Xunit.Extensions;
+using System;
 
 namespace ProjetoPraticoCodenation.test
 {
@@ -62,9 +65,9 @@ namespace ProjetoPraticoCodenation.test
 
                 Assert.Equal(fakeLogErro.Arquivado, actual.Arquivado);
             }
-        }
+        }*/
 
-        */
+        
         [Theory]
         [InlineData(1)]
         [InlineData(2)]
@@ -85,7 +88,7 @@ namespace ProjetoPraticoCodenation.test
                 Assert.Null(actual);
             }
         }
-
+        
         [Theory]
         [InlineData("error", "Produção")]
         [InlineData("debug", "Homologacao")]
@@ -101,12 +104,12 @@ namespace ProjetoPraticoCodenation.test
 
                 var service = new LogErroService(context);
 
-                var actual = service.LocalizarPorNivelAmbiente(nivel, ambiente);
+                var actual = service.LocalizarPorNivelAmbiente(nivel, ambiente, true, false);
 
                 Assert.Equal(expected, actual, new LogErroComparer());
             }
         }
-
+        
         [Theory]
         [InlineData("error", "Produção")]
         [InlineData("debug", "Homologacao")]
@@ -127,6 +130,48 @@ namespace ProjetoPraticoCodenation.test
                 Assert.Equal(expected, actual, new LogErroComparer());
             }
         }
+
+        [Theory]
+        [MemberData(nameof(_data))]
+        public void Deve_Excluir_Log(List<int> listaId)
+        {
+            var fakeContext = new FakeContext("LocalizarPorDescricaoAmbiente");
+            fakeContext.FillWith<LogErro>();
+
+            using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
+            {
+                var service = new LogErroService(context);
+
+                List<LogErro> before = new List<LogErro>();
+                
+
+                foreach (int id in listaId)
+                {
+                    before.Add(service.FindById(id));
+                }
+
+                foreach (int id in listaId)
+                {
+                    service.Remover(id);
+                }
+
+                List<LogErro> after = new List<LogErro>();
+
+                foreach (int id in listaId)
+                {
+                    var obj = service.FindById(id);
+                    if (obj != null)
+                        after.Add(obj);
+                }
+
+                Assert.NotEqual(before.Count, after.Count);
+            }
+        }
+
+        public static List<object[]> _data = new List<object[]>
+        {
+            new object[] { new List<int> { 1, 2} }
+        };
 
     }
 }

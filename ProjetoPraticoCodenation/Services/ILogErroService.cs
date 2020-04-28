@@ -7,7 +7,7 @@ namespace ProjetoPraticoCodenation.Services
     {
         LogErro FindById(int id);
 
-        IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente);
+        IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia);
 
         IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente);
 

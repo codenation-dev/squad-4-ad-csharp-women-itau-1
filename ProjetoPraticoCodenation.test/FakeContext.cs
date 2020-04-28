@@ -38,7 +38,7 @@ namespace ProjetoPraticoCodenation.test
             var configuration = new MapperConfiguration(cfg =>
             {
                 cfg.CreateMap<Usuario, UsuarioDTO>().ReverseMap();
-                cfg.CreateMap<LogErro, LogErroDTO>().ReverseMap();                
+                cfg.CreateMap<LogErro, LogErroDTO>().ReverseMap();
             });
 
             this.Mapper = configuration.CreateMapper();
@@ -91,11 +91,25 @@ namespace ProjetoPraticoCodenation.test
             service.Setup(x => x.FindById(It.IsAny<int>())).
                 Returns((int id) => Get<LogErro>().FirstOrDefault(x => x.Id == id));
 
+            service.Setup(x => x.LocalizarPorNivelAmbiente(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
+                .Returns((string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia) =>
+                {
+                    if (ordenarPorNivel)
+                    {
+                        return Get<LogErro>().Where(l => l.Nivel == nivel)
+                         .Where(l => l.Ambiente == ambiente)
+                         .OrderBy(l => l.Nivel)
+                         .ToList();
+                    }
+                    else
+                    {
 
-            service.Setup(x => x.LocalizarPorNivelAmbiente(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns((string nivel, string ambiente) => Get<LogErro>().Where(l => l.Nivel == nivel)
-                                                            .Where(l => l.Ambiente == ambiente)
-                                                            .ToList());
+                        return Get<LogErro>().Where(l => l.Nivel == nivel)
+                         .Where(l => l.Ambiente == ambiente)
+                         .ToList();
+
+                    }
+                });
 
             service.Setup(x => x.LocalizarPorDescricaoAmbiente(It.IsAny<string>(), It.IsAny<string>()))
                 .Returns((string descricao, string ambiente) => Get<LogErro>().Where(l => l.Descricao == descricao)

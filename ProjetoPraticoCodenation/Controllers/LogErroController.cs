@@ -50,9 +50,10 @@ namespace ProjetoPraticoCodenation.Controllers
         [HttpGet("BuscarNivelAmbiente/{nivel, ambiente}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<IEnumerable<LogErroDTO>> GetNivelAmbiente(string nivel, string ambiente)
+        public ActionResult<IEnumerable<LogErroDTO>> GetNivelAmbiente(string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            var listaLogErro = _logErroService.LocalizarPorNivelAmbiente(nivel, ambiente);
+            var listaLogErro = _logErroService.LocalizarPorNivelAmbiente(nivel, ambiente, ordenarPorNivel, ordenarPorFrequencia);
+
 
             if (listaLogErro != null)
             {
@@ -68,7 +69,7 @@ namespace ProjetoPraticoCodenation.Controllers
         [HttpGet("BuscarDescricaoAmbiente/{Descricao, ambiente}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<IEnumerable<LogErroDTO>> GetAll(string descricao, string ambiente)
+        public ActionResult<IEnumerable<LogErroDTO>> GetDescricaoAmbiente(string descricao, string ambiente)
         {
             var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente);
 
@@ -97,7 +98,7 @@ namespace ProjetoPraticoCodenation.Controllers
                 UsuarioOrigem = value.UsuarioOrigem,
                 Evento = value.Evento,
                 Origem = value.Origem,
-                Arquivado = value.Arquivado,
+                Arquivado = false,
                 Ambiente = value.Ambiente,
                 DataCriacao = value.DataCriacao
             };
@@ -136,14 +137,17 @@ namespace ProjetoPraticoCodenation.Controllers
         }
 
         [HttpDelete]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(IList<int> listaIds)
         {
-            if (id <= 0)
-                return BadRequest("id invalido");
+            if (listaIds.Count == 0)
+                return BadRequest("Nenhum item para deletar");
 
-            _logErroService.Remover(id);
+            foreach (int id in listaIds)
+            {
+                _logErroService.Remover(id);
+            }
 
             return Ok();
-        } 
+        }
     }
 }
