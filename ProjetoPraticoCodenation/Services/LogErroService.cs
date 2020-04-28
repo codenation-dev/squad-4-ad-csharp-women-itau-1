@@ -32,27 +32,47 @@ namespace ProjetoPraticoCodenation.Services
 
                 return _context.Logs.Where(x => x.Nivel == nivel)
                                     .Where(x => x.Ambiente == ambiente)
-
                                     .ToList();
             }
 
         }
 
-        public IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente)
+        public IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            return _context.Logs.Where(x => x.Descricao == descricao).
+            if (ordenarPorNivel)
+            {
+                return _context.Logs.Where(x => x.Descricao == descricao).
                                  Where(x => x.Ambiente == ambiente).
                                  Distinct().
+                                 OrderBy(x => x.Nivel).
                                  ToList();
+            }
+            else
+            {
+                return _context.Logs.Where(x => x.Descricao == descricao).
+                  Where(x => x.Ambiente == ambiente).
+                  Distinct().
+                  ToList();
+            }
         }
 
-        public IList<LogErro> LocalizarPorOrigemAmbiente(string origem, string ambiente)
+        public IList<LogErro> LocalizarPorOrigemAmbiente(string origem, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            return _context.Logs.Where(x => x.Origem == origem)
-                                .Where(x => x.Ambiente == ambiente)
-                                .ToList();
-        }
+            if (ordenarPorNivel)
+            {
+                return _context.Logs.Where(x => x.Origem == origem)
+                            .Where(x => x.Ambiente == ambiente)
+                            .OrderBy(x => x.Nivel)
+                            .ToList();
+            }
+            else
+            {
+                return _context.Logs.Where(x => x.Origem == origem)
+                     .Where(x => x.Ambiente == ambiente)
+                     .ToList();
 
+            }
+        }
 
         public void Remover(int id)
         {

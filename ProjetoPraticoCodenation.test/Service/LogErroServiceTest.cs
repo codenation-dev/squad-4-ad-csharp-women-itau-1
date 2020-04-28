@@ -125,7 +125,7 @@ namespace ProjetoPraticoCodenation.test
 
                 var service = new LogErroService(context);
 
-                var actual = service.LocalizarPorDescricaoAmbiente(descricao, ambiente);
+                var actual = service.LocalizarPorDescricaoAmbiente(descricao, ambiente, true, false);
 
                 Assert.Equal(expected, actual, new LogErroComparer());
             }

@@ -69,9 +69,9 @@ namespace ProjetoPraticoCodenation.Controllers
         [HttpGet("BuscarDescricaoAmbiente/{Descricao, ambiente}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<IEnumerable<LogErroDTO>> GetDescricaoAmbiente(string descricao, string ambiente)
+        public ActionResult<IEnumerable<LogErroDTO>> GetDescricaoAmbiente(string descricao, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente);
+            var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente, ordenarPorNivel, ordenarPorFrequencia);
 
             if (listaLogErro != null)
             {
@@ -88,9 +88,9 @@ namespace ProjetoPraticoCodenation.Controllers
         [HttpGet("BuscarOrigemAmbiente/{origem, ambiente}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<IEnumerable<LogErroDTO>> GetOrigemAmbiente(string origem, string ambiente)
+        public ActionResult<IEnumerable<LogErroDTO>> GetOrigemAmbiente(string origem, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            var listaLogErro = _logErroService.LocalizarPorOrigemAmbiente(origem, ambiente);
+            var listaLogErro = _logErroService.LocalizarPorOrigemAmbiente(origem, ambiente, ordenarPorNivel, ordenarPorFrequencia);
 
             if (listaLogErro != null)
             {

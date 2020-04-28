@@ -56,10 +56,10 @@ namespace ProjetoPraticoCodenation.test.Model
         {
             var fakes = new FakeContext("LogErroControllerTestDescricao");
             var fakeService = fakes.FakeAccelerationService().Object;
-            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorDescricaoAmbiente(descricao, ambiente));
+            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorDescricaoAmbiente(descricao, ambiente, true, false));
 
             var controller = new LogErroController(fakeService, fakes.Mapper);
-            var result = controller.GetDescricaoAmbiente(descricao, ambiente);
+            var result = controller.GetDescricaoAmbiente(descricao, ambiente, true, false);
 
             Assert.IsType<OkObjectResult>(result.Result);
             var actual = (result.Result as OkObjectResult).Value as List<LogErroDTO>;
