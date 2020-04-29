@@ -128,7 +128,7 @@ namespace ProjetoPraticoCodenation.Controllers
         }
   
         [HttpPut]
-        public ActionResult<LogErroDTO> Put([FromBody] LogErroDTO value)
+        public ActionResult<LogErroDTO> Put([FromBody] LogErroDTO value) //elis -> verificar se é necessário todos os campos porque so usa para arquivar
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

@@ -18,7 +18,7 @@ namespace ProjetoPraticoCodenation.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    //[Authorize]
+    //[Authorize] - ver com ingrid como adicionar politica de adm
 
 
     public class UsuarioController : ControllerBase
@@ -61,8 +61,7 @@ namespace ProjetoPraticoCodenation.Controllers
 
             //endpoint token- http://localhost:5000/connect/token
 
-            var disco = await DiscoveryClient.GetAsync("http://localhost:5001");
-
+            var disco = await DiscoveryClient.GetAsync("http://localhost:5000"); //elis - alterei aqui para teste
             var TokenClient = new TokenClient(disco.TokenEndpoint, "codenation_projetoFinal.api_client", "codenation_projetoFinal.api_secret");
 
 

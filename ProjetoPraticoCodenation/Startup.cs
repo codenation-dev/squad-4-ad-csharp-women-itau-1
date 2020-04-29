@@ -37,7 +37,7 @@ namespace ProjetoPraticoCodenation
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //add politica para user Ingrid
+            //add politica para user adm
             services.AddMvcCore()
            .AddAuthorization(opt => {
                opt.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Email, "agatha@gmail.com"));
@@ -101,7 +101,7 @@ namespace ProjetoPraticoCodenation
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
-                    options.Authority = "http://localhost:5000";
+                    options.Authority = "http://localhost:5000"; //elis alterando teste
                     options.RequireHttpsMetadata = false;
                     options.Audience = "codenation_projetoFinal";
                 });
