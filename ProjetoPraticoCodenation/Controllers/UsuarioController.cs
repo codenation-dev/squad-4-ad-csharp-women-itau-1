@@ -14,11 +14,10 @@ using ProjetoPraticoCodenation.Services;
 namespace ProjetoPraticoCodenation.Controllers
 {
 
-
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    //[Authorize] - ver com ingrid como adicionar politica de adm
+    [Authorize] // ver com ingrid como adicionar politica de adm
 
 
     public class UsuarioController : ControllerBase
@@ -29,27 +28,6 @@ namespace ProjetoPraticoCodenation.Controllers
         {
             _usuarioService = usuarioService;
             _mapper = mapper;
-        }
-
-
-        //GET api/usuario/{id}
-        [HttpGet("{id}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-
-        public ActionResult<UsuarioDTO> Get(int id)
-        {
-            var user = _mapper.Map<UsuarioDTO>(_usuarioService.FindById(id));
-
-            if (user != null)
-            {
-                var retorno = _mapper.Map<UsuarioDTO>(_usuarioService.FindById(id));
-                return Ok(retorno);
-            }
-            else
-            {
-                return NotFound();
-            }
         }
 
 
