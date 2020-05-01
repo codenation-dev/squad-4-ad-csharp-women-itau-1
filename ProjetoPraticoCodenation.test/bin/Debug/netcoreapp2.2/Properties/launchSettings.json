@@ -21,12 +21,16 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:5001;http://localhost:5000",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "sqlDebugging": false,
       "nativeDebugging": false,
-      "applicationUrl": "http://localhost:5001"
-    }
+      "applicationUrl": "http://
+      01"
+    },
+
+
   }
 }

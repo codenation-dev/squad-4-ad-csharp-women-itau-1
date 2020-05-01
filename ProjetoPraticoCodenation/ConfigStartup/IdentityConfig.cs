@@ -1,83 +1,61 @@
-﻿using IdentityServer4.Models;
-using System.Collections.Generic;
-using IdentityServer4.Test;
-using System.Security.Claims;
-using IdentityServer4;
+﻿using Microsoft.Extensions.DependencyInjection;
+//using IdentityAuth.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+//using IdentityAuth.Models;
+using ProjetoPraticoCodenation.Data;
+using ProjetoPraticoCodenation.Models;
 
 namespace ProjetoPraticoCodenation.ConfigStartup
 {
     public static class IdentityConfig
     {
-        public static IEnumerable<IdentityResource> GetRecursosIdentity()
+        public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services,
+            IConfiguration configuration)
         {
-            return new IdentityResource[]
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddDefaultIdentity<IdentityUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+  
+            var appSettingsSection = configuration.GetSection("AppSettings");
+
+            services.Configure<AppSettings>(appSettingsSection);
+
+            var appSettings = appSettingsSection.Get<AppSettings>();
+
+            var key = Encoding.ASCII.GetBytes(appSettings.Secret);
+
+            // config autenticação e Bearer
+            services.AddAuthentication(x =>
             {
-                new IdentityResources.OpenId()
-            };
-        }
-
-
-        public static IEnumerable<ApiResource> GetApis()
-        {
-            return new List<ApiResource>() {
-                new ApiResource(
-                    name: "codenation_projetoFinal",
-                    displayName: "Codenation Projeto",
-                    claimTypes: new [] {
-                        ClaimTypes.Role,
-                        ClaimTypes.Email
-                    }
-                )
-            };
-        }
-
-        public static IEnumerable<Client> GetClients()
-        {
-            return new List<Client>() {
-                new Client
-                {
-                    ClientName = "Client Projeto Final",
-                    ClientId = "codenation_projetoFinal.api_client",
-                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
-                    ClientSecrets = {
-                        new Secret("codenation_projetoFinal.api_secret".Sha256())
-                    },
-                    AllowedScopes = {
-                        IdentityServerConstants.StandardScopes.OpenId,
-                        "codenation_projetoFinal"
-                    },
-                    AlwaysIncludeUserClaimsInIdToken = true
-                }
-            };
-        }
-
-        public static List<TestUser> GetUsers()
-        {
-            return new List<TestUser>
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(x =>
             {
-                new TestUser
+                x.RequireHttpsMetadata = true;
+                x.SaveToken = true;
+                x.TokenValidationParameters = new TokenValidationParameters
                 {
-                    SubjectId = "1",
-                    Username = "ls.sz",
-                    Password = "456",
-                    Claims = new [] {
-                        new Claim(ClaimTypes.Role, "user"),
-                        new Claim(ClaimTypes.Email, "elis@email.com")
-                    }
-                },
-                new TestUser
-                {
-                    SubjectId = "2",
-                    Username = "rql.prts",
-                    Password = "789",
-                    Claims = new [] {
-                        new Claim(ClaimTypes.Role, "user"),
-                        new Claim(ClaimTypes.Email, "raquel@email.com")
-                    }
-                }
-            };
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = appSettings.ValidoEm,
+                    ValidIssuer = appSettings.Emissor
+                };
+            });
+
+            return services;
         }
+
     }
-
 }
-

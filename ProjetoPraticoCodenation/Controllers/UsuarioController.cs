@@ -17,7 +17,7 @@ namespace ProjetoPraticoCodenation.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
-    [Authorize] // ver com ingrid como adicionar politica de adm
+    //[Authorize] // ver com ingrid como adicionar politica de adm
 
 
     public class UsuarioController : ControllerBase

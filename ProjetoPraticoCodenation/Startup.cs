@@ -25,13 +25,13 @@ namespace ProjetoPraticoCodenation
     public class Startup
     {
         public IConfiguration Configuration { get; }
-        public StartupIdentityServer IdentitServerStartup { get; }
+               
         public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
 
-            if (!environment.IsEnvironment("Testing"))
-                IdentitServerStartup = new StartupIdentityServer(environment);
+            //if (!environment.IsEnvironment("Testing"))
+            //    IdentitServerStartup = new StartupIdentityServer(environment);
         }
 
 
@@ -39,9 +39,9 @@ namespace ProjetoPraticoCodenation
         {
             //add politica para user adm
             services.AddMvcCore()
-           .AddAuthorization(opt => {
-               opt.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Email, "agatha@gmail.com"));
-           })
+           //.AddAuthorization(opt => {
+           //    opt.AddPolicy("Admin", policy => policy.RequireClaim(ClaimTypes.Email, "agatha@gmail.com"));
+           //})
            .AddJsonFormatters()
            .AddApiExplorer()
            .AddVersionedApiExplorer(p =>
@@ -56,9 +56,6 @@ namespace ProjetoPraticoCodenation
             services.AddScoped<ILogErroService, LogErroService>();
             services.AddAutoMapper(typeof(Startup));
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-
-            if (IdentitServerStartup != null)
-                IdentitServerStartup.ConfigureServices(services);
 
 
             // config versionamento
@@ -86,6 +83,10 @@ namespace ProjetoPraticoCodenation
                     Description = "Insira o token JWT desta maneira: Bearer {seu token}"
                 });
 
+                // config Identity  - IServiceCollection
+                services.AddIdentityConfiguration(Configuration);
+
+
                 /*{ x.SwaggerDoc("V1", new Info
                       {
                           Title = "API Projeto Final Codenation - Squad 4",
@@ -96,37 +97,18 @@ namespace ProjetoPraticoCodenation
                   })*/
             });
 
-
-            // config autenticação para API - jwt bearer 
-            services.AddAuthentication("Bearer")
-                .AddJwtBearer("Bearer", options =>
-                {
-                    options.Authority = "http://localhost:5000"; //elis alterando teste
-                    options.RequireHttpsMetadata = false;
-                    options.Audience = "codenation_projetoFinal";
-                });
-
-
             services.Configure<ApiBehaviorOptions>(opt =>
             {
                 opt.SuppressModelStateInvalidFilter = true;
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApiVersionDescriptionProvider provider)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //identityServer
-            app.UseAuthentication();
-            app.UseIdentityServer();
-
-            if (IdentitServerStartup != null)
-                IdentitServerStartup.Configure(app, env);
 
             // swagger
             app.UseSwagger();
@@ -145,7 +127,7 @@ namespace ProjetoPraticoCodenation
                 options.DocExpansion(DocExpansion.List);
             });
 
-
+            app.UseAuthentication();
             app.UseMvcWithDefaultRoute();
         }
     }
