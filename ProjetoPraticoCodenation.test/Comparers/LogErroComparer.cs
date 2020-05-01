@@ -8,7 +8,16 @@ namespace ProjetoPraticoCodenation.test
     {
         public bool Equals( LogErro x, LogErro y)
         {
-            return x.Id == y.Id;
+            return x.Id == y.Id 
+                && x.Nivel == y.Nivel
+                && x.Ambiente == y.Ambiente
+                && x.Descricao == y.Descricao
+                && x.Titulo == y.Titulo
+                && x.Arquivado == y.Arquivado
+                && x.Origem == y.Origem
+                && x.UsuarioOrigem == y.UsuarioOrigem
+                && x.DataCriacao == y.DataCriacao
+                ;
         }
 
         public int GetHashCode(LogErro obj)

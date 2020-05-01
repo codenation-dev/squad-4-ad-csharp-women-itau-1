@@ -6,6 +6,7 @@ using ProjetoPraticoCodenation.Services;
 using System.Collections.Generic;
 using Xunit.Extensions;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProjetoPraticoCodenation.test
 {
@@ -49,48 +50,9 @@ namespace ProjetoPraticoCodenation.test
                 Assert.NotEqual(0, actual.Id);
             }
         }
-        /*
-        [Fact]
-        public void Devera_Alterar_LogErro()
-        {
-            var fakeContext = new FakeContext("AlterarLogErro");
-           
-            var fakeLogErro = fakeContext.GetFakeData<LogErro>().Last();
-            fakeLogErro.Arquivado = true;
-           
-            using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
-            {
-                var service = new LogErroService(context);
-                var actual = service.Arquivar(fakeLogErro);
 
-                Assert.Equal(fakeLogErro.Arquivado, actual.Arquivado);
-            }
-        }*/
-
-        
         [Theory]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        public void Deve_Remover_LogErro_1(int id)
-        {
-            var fakeContext = new FakeContext("RemoverLogErro");
-            fakeContext.FillWith<LogErro>();
-
-            using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
-            {
-                var service = new LogErroService(context);
-
-                service.Remover(id);
-
-                var actual = service.FindById(id);
-
-                Assert.Null(actual);
-            }
-        }
-        
-        [Theory]
-        [InlineData("error", "Produção")]
+        [InlineData("error", "Producao")]
         [InlineData("debug", "Homologacao")]
         public void Deve_Retornar_Log_Por_Nivel_e_Ambiente(string nivel, string ambiente)
         {
@@ -109,10 +71,10 @@ namespace ProjetoPraticoCodenation.test
                 Assert.Equal(expected, actual, new LogErroComparer());
             }
         }
-        
+
         [Theory]
-        [InlineData("error", "Produção")]
-        [InlineData("debug", "Homologacao")]
+        [InlineData("Erro ao logar no sistema", "Producao")]
+        [InlineData("Erro mudar senha do usuario", "Homologacao")]
         public void Deve_Retornar_Log_Por_Descricao_e_Ambiente(string descricao, string ambiente)
         {
             var fakeContext = new FakeContext("LocalizarPorDescricaoAmbiente");
@@ -131,11 +93,36 @@ namespace ProjetoPraticoCodenation.test
             }
         }
 
+
         [Theory]
-        [MemberData(nameof(_data))]
+        [InlineData("127.0.0.1", "Produção")]
+        [InlineData("app.server.com.br", "Homologacao")]
+        public void Deve_Retornar_Log_Por_Origem_e_Ambiente(string origem, string ambiente)
+        {
+            var fakeContext = new FakeContext("LocalizaOrigemAmbiente");
+            fakeContext.FillWith<LogErro>();
+
+            using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
+            {
+                var expected = fakeContext.GetFakeData<LogErro>().Where(x => x.Origem == origem)
+                                                                .Where(x => x.Ambiente == ambiente);
+
+                var service = new LogErroService(context);
+
+                var actual = service.LocalizarPorOrigemAmbiente(origem, ambiente, true, false);
+
+                Assert.Equal(expected, actual, new LogErroComparer());
+            }
+        }
+
+
+        [Theory]
+        [MemberData(nameof(_data_remover))]
         public void Deve_Excluir_Log(List<int> listaId)
         {
-            var fakeContext = new FakeContext("LocalizarPorDescricaoAmbiente");
+            if (listaId == null)
+                throw new ArgumentNullException();
+            var fakeContext = new FakeContext("RemoverLog");
             fakeContext.FillWith<LogErro>();
 
             using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
@@ -143,7 +130,7 @@ namespace ProjetoPraticoCodenation.test
                 var service = new LogErroService(context);
 
                 List<LogErro> before = new List<LogErro>();
-                
+
 
                 foreach (int id in listaId)
                 {
@@ -168,7 +155,103 @@ namespace ProjetoPraticoCodenation.test
             }
         }
 
-        public static List<object[]> _data = new List<object[]>
+
+
+        [Theory]
+        [MemberData(nameof(_data_arquivar))]
+        public void Deve_Arquivar_Log(List<int> listaId)
+        {
+            if (listaId == null)
+                throw new ArgumentNullException();
+
+            var fakeContext = new FakeContext("ArquivarLog");
+            fakeContext.FillWith<LogErro>();
+
+            using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
+            {
+                var service = new LogErroService(context);
+
+                List<LogErro> before = new List<LogErro>();
+
+
+                foreach (int id in listaId)
+                {
+                    var log = service.FindById(id);
+                    context.Entry(log).State = EntityState.Detached;
+                    before.Add(log);
+                }
+
+                foreach (int id in listaId)
+                {
+                    service.Arquivar(id);
+                }
+
+                List<LogErro> after = new List<LogErro>();
+
+                foreach (int id in listaId)
+                {
+                    var obj = service.FindById(id);
+                    if (obj != null)
+                        after.Add(obj);
+                }
+
+                Assert.NotEqual(before, after, new LogErroComparer());
+            }
+        }
+
+        [Theory]
+        [MemberData(nameof(_data_desarquivar))]
+        public void Deve_Desarquivar_Log(List<int> listaId)
+        {
+            var fakeContext = new FakeContext("ArquivarLog");
+            fakeContext.FillWith<LogErro>();
+
+            using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
+            {
+                if (listaId == null)
+                    throw new ArgumentNullException();
+
+                var service = new LogErroService(context);
+
+                List<LogErro> before = new List<LogErro>();
+
+                foreach (int id in listaId)
+                {
+                    var log = service.FindById(id);
+                    context.Entry(log).State = EntityState.Detached;
+                    before.Add(log);
+                }
+
+                foreach (int id in listaId)
+                {
+                    service.Desarquivar(id);
+                }
+
+                List<LogErro> after = new List<LogErro>();
+
+                foreach (int id in listaId)
+                {
+                    var obj = service.FindById(id);
+                    if (obj != null)
+                        after.Add(obj);
+                }
+
+                Assert.NotEqual(before, after, new LogErroComparer());
+            }
+        }
+
+        public static List<object[]> _data_desarquivar = new List<object[]>
+        {
+            new object[] { new List<int> { 3, 4} }
+        };
+
+        public static List<object[]> _data_arquivar = new List<object[]>
+        {
+            new object[] { new List<int> { 1, 2} }
+        };
+
+
+        public static List<object[]> _data_remover = new List<object[]>
         {
             new object[] { new List<int> { 1, 2} }
         };

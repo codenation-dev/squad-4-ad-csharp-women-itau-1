@@ -75,7 +75,7 @@ namespace ProjetoPraticoCodenation.test
             return JsonConvert.DeserializeObject<List<T>>(content);
         }
 
-        public Mock<ILogErroService> FakeAccelerationService()
+        public Mock<ILogErroService> FakeLogErroService()
         {
             var service = new Mock<ILogErroService>();
 
@@ -88,34 +88,33 @@ namespace ProjetoPraticoCodenation.test
                     return log;
                 });
 
+
             service.Setup(x => x.FindById(It.IsAny<int>())).
                 Returns((int id) => Get<LogErro>().FirstOrDefault(x => x.Id == id));
+
 
             service.Setup(x => x.LocalizarPorNivelAmbiente(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
                 .Returns((string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia) =>
                 {
-                    if (ordenarPorNivel)
-                    {
-                        return Get<LogErro>().Where(l => l.Nivel == nivel)
-                         .Where(l => l.Ambiente == ambiente)
-                         .OrderBy(l => l.Nivel)
-                         .ToList();
-                    }
-                    else
-                    {
-
-                        return Get<LogErro>().Where(l => l.Nivel == nivel)
-                         .Where(l => l.Ambiente == ambiente)
-                         .ToList();
-
-                    }
+                    var logs = Get<LogErro>();
+                    return logs
+                     .Where(l => l.Nivel == nivel)
+                     .Where(l => l.Ambiente == ambiente)
+                     .ToList();
                 });
+
 
             service.Setup(x => x.LocalizarPorDescricaoAmbiente(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
                 .Returns((string descricao, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia) =>
-                                                            Get<LogErro>().Where(l => l.Descricao == descricao)
-                                                            .Where(l => l.Ambiente == ambiente)
-                                                            .ToList());
+                {
+                    var logs = Get<LogErro>();
+                    var lista = logs
+                     .Where(l => l.Descricao == descricao)
+                     .Where(l => l.Ambiente == ambiente)
+                     .ToList();
+
+                    return lista;
+                });
 
 
 

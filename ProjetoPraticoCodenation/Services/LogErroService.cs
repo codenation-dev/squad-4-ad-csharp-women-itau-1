@@ -74,6 +74,7 @@ namespace ProjetoPraticoCodenation.Services
             }
         }
 
+
         public void Remover(int id)
         {
             var existe = FindById(id);
@@ -85,25 +86,50 @@ namespace ProjetoPraticoCodenation.Services
             }
         }
 
+
+        public void Arquivar(int id)
+        {
+            var logerroExistente = FindById(id);
+
+            if (logerroExistente != null)
+            {
+                logerroExistente.Arquivado = true;
+                _context.SaveChanges();
+            }
+        }
+
+
+        public void Desarquivar(int id)
+        {
+            var logerroExistente = FindById(id);
+
+            if (logerroExistente != null)
+            {
+                logerroExistente.Arquivado = false;
+                _context.SaveChanges();
+            }
+        }
+
+
         public LogErro Salvar(LogErro log)
         {
-            var existe = _context.Logs
+            var logerroExistente = _context.Logs
                           .Where(x => x.Id == log.Id)
                           .FirstOrDefault();
 
-            if (existe == null)
+            if (logerroExistente == null)
                 _context.Logs.Add(log);
             else
             {
-                existe.Titulo = log.Titulo;
-                existe.Descricao = log.Descricao;
-                existe.Nivel = log.Nivel;
-                existe.UsuarioOrigem = log.UsuarioOrigem;
-                existe.Evento = log.Evento;
-                existe.Origem = log.Origem;
-                existe.Arquivado = log.Arquivado;
-                existe.Ambiente = log.Ambiente;
-                existe.DataCriacao = log.DataCriacao;
+                logerroExistente.Titulo = log.Titulo;
+                logerroExistente.Descricao = log.Descricao;
+                logerroExistente.Nivel = log.Nivel;
+                logerroExistente.UsuarioOrigem = log.UsuarioOrigem;
+                logerroExistente.Evento = log.Evento;
+                logerroExistente.Origem = log.Origem;
+                logerroExistente.Arquivado = log.Arquivado;
+                logerroExistente.Ambiente = log.Ambiente;
+                logerroExistente.DataCriacao = log.DataCriacao;
             }
 
             _context.SaveChanges();
