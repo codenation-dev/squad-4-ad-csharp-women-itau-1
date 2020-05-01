@@ -6,6 +6,7 @@ namespace ProjetoPraticoCodenation.Models
     {
 
         public DbSet<LogErro> Logs { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
 
 
         // this constructor is for enable testing with in-memory data
