@@ -15,6 +15,10 @@ namespace ProjetoPraticoCodenation.Services
 
         void Remover(int id);
 
+        void Arquivar(int id);
+
+        void Desarquivar(int id);
+
         LogErro Salvar(LogErro log);
     }
 }

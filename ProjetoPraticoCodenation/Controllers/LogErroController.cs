@@ -33,7 +33,6 @@ namespace ProjetoPraticoCodenation.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<LogErroDTO> Get(int id)
         {
-
             var logErro = _logErroService.FindById(id);
 
             if (logErro != null)
@@ -47,7 +46,7 @@ namespace ProjetoPraticoCodenation.Controllers
         }
 
         // GET api/LogErro/{nivel, ambiente, teste}
-        [HttpGet("BuscarNivelAmbiente/{nivel, ambiente}")]
+        [HttpGet("BuscarNivelAmbiente")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<LogErroDTO>> GetNivelAmbiente(string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
@@ -66,7 +65,7 @@ namespace ProjetoPraticoCodenation.Controllers
         }
 
         // GET api/LogErro/{descricao, ambiente}
-        [HttpGet("BuscarDescricaoAmbiente/{Descricao, ambiente}")]
+        [HttpGet("BuscarDescricaoAmbiente")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<LogErroDTO>> GetDescricaoAmbiente(string descricao, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
@@ -81,11 +80,10 @@ namespace ProjetoPraticoCodenation.Controllers
             }
             else
                 return NotFound();
-
         }
 
         // GET api/LogErro/{origem, ambiente, teste}
-        [HttpGet("BuscarOrigemAmbiente/{origem, ambiente}")]
+        [HttpGet("BuscarOrigemAmbiente")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<LogErroDTO>> GetOrigemAmbiente(string origem, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
@@ -101,59 +99,80 @@ namespace ProjetoPraticoCodenation.Controllers
                 return NotFound();
         }
 
-        [HttpPost]
-        public ActionResult<LogErroDTO> Post([FromBody]LogErroDTO value)
+        // POST api/Incluir
+        [HttpPost("Incluir")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<List<LogErroDTO>> Post([FromBody]List<LogErroDTO> value)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var logErro = new LogErro()
+            List<LogErroDTO> retorno = new List<LogErroDTO>();
+
+            foreach (LogErroDTO log in value)
             {
-                Titulo = value.Titulo,
-                Descricao = value.Descricao,
-                Nivel = value.Nivel,
-                UsuarioOrigem = value.UsuarioOrigem,
-                Evento = value.Evento,
-                Origem = value.Origem,
-                Arquivado = false,
-                Ambiente = value.Ambiente,
-                DataCriacao = value.DataCriacao
-            };
+                var logErro = new LogErro()
+                {
+                    Titulo = log.Titulo,
+                    Descricao = log.Descricao,
+                    Nivel = log.Nivel,
+                    UsuarioOrigem = log.UsuarioOrigem,
+                    Evento = log.Evento,
+                    Origem = log.Origem,
+                    Arquivado = false,
+                    Ambiente = log.Ambiente,
+                    DataCriacao = log.DataCriacao
+                };
 
-            var retornoLogErro = _logErroService.Salvar(logErro);
+                var retornoLogErro = _logErroService.Salvar(logErro);
 
-            var retorno = _mapper.Map<LogErroDTO>(retornoLogErro);
+                retorno.Add(_mapper.Map<LogErroDTO>(retornoLogErro));
+            }
 
             return Ok(retorno);
         }
-  
-        [HttpPut]
-        public ActionResult<LogErroDTO> Put([FromBody] LogErroDTO value) //elis -> verificar se é necessário todos os campos porque so usa para arquivar
+
+        // PUT api/Arquivar
+        [HttpPut("Arquivar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]    
+        public ActionResult Arquivar(IList<int> listaIds)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+            if (listaIds.Count == 0)
+                return BadRequest("Nenhum item para arquivar");
 
-            var logErro = new LogErro()
+            foreach (int id in listaIds)
             {
-                Titulo = value.Titulo,
-                Descricao = value.Descricao,
-                Nivel = value.Nivel,
-                UsuarioOrigem = value.UsuarioOrigem,
-                Evento = value.Evento,
-                Origem = value.Origem,
-                Arquivado = value.Arquivado,
-                Ambiente = value.Ambiente,
-                DataCriacao = value.DataCriacao
-            };
+                _logErroService.Arquivar(id);
+            }
 
-            var retornoLogErro = _logErroService.Salvar(logErro);
-            
-            var retorno = _mapper.Map<LogErroDTO>(retornoLogErro);
-
-            return Ok(retorno);
+            return Ok();
         }
 
-        [HttpDelete]
+
+        // PUT api/Desarquivar
+        [HttpPut("Desarquivar")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult Desarquivar(IList<int> listaIds)
+        {
+            if (listaIds.Count == 0)
+                return BadRequest("Nenhum item para desarquivar");
+
+            foreach (int id in listaIds)
+            {
+                _logErroService.Desarquivar(id);
+            }
+
+            return Ok();
+        }
+
+
+        // DELETE api/Remover
+        [HttpDelete("Remover")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult Delete(IList<int> listaIds)
         {
             if (listaIds.Count == 0)

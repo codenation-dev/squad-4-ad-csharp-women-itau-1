@@ -26,8 +26,7 @@
       },
       "sqlDebugging": false,
       "nativeDebugging": false,
-      "applicationUrl": "http://
-      01"
+      "applicationUrl": "http://localhost:5001"
     }
   }
 }
