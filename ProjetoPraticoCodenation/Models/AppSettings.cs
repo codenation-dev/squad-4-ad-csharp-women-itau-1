@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ProjetoPraticoCodenation.Models
+﻿namespace ProjetoPraticoCodenation.Models
 {
-    class AppSettings
+    public class AppSettings
     {
         public string Secret { get; set; }
         public int ExpiracaoHoras { get; set; }

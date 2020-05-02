@@ -3,10 +3,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoPraticoCodenation.DTOs;
 using ProjetoPraticoCodenation.Services;
-using System;
 using System.Collections.Generic;
 using ProjetoPraticoCodenation.Models;
-using System.Web.Http;
 using Microsoft.AspNetCore.Authorization;
 
 namespace ProjetoPraticoCodenation.Controllers

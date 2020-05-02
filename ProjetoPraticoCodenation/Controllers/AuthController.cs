@@ -1,20 +1,17 @@
 ﻿using System;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
 using System.Text;
+using System.Linq;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
-using ProjetoPraticoCodenation.DTOs;
-using ProjetoPraticoCodenation.Extensions;
-using ProjetoPraticoCodenation.Models;
-using ProjetoPraticoCodenation.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using ProjetoPraticoCodenation.DTOs;
 using ProjetoPraticoCodenation.Models;
+
 
 namespace ProjetoPraticoCodenation.Controllers
 {
@@ -24,10 +21,22 @@ namespace ProjetoPraticoCodenation.Controllers
     [Authorize]
     public class AuthController : ControllerBase
     {
-
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
+
+        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings)
+        {
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _appSettings = appSettings.Value;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> Get()
+        {
+            return Ok("Teste autorização Ok!!!");
+        }
 
         [HttpPost("cadastrar")]
         [AllowAnonymous]
@@ -36,7 +45,7 @@ namespace ProjetoPraticoCodenation.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = new IdentityUser // automapper
+            var user = new IdentityUser
             {
                 UserName = registerUser.Email,
                 Email = registerUser.Email,
@@ -50,27 +59,49 @@ namespace ProjetoPraticoCodenation.Controllers
                 return Ok(result.Succeeded);
             }
 
-            //retorna erro no model ErrorResponse
             return BadRequest(ErrorResponse.FromIdentity(result.Errors.ToList()));
         }
 
+        [HttpPost("login")]
+        [AllowAnonymous]
+        public async Task<ActionResult> Login(LoginUserDTO loginUser)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
+            var result = await _signInManager.PasswordSignInAsync(loginUser.Email, loginUser.Password, false, true);
+
+            if (result.Succeeded)
+            {
+                return Ok(await GerarJwt(loginUser.Email));
+            }
+            if (result.IsLockedOut)
+            {
+                return BadRequest(loginUser);
+            }
+
+            return NotFound(loginUser);
+        }
+
+        [HttpPost("logout")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
+        }
 
         private async Task<LoginResponseDTO> GerarJwt(string email)
         {
-            // buscar usuario na base
+
             var user = await _userManager.FindByEmailAsync(email);
-            // buscar claims
             var claims = await _userManager.GetClaimsAsync(user);
-            // buscar regras
             var userRoles = await _userManager.GetRolesAsync(user);
 
-            // add nas claims
             claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
             claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
             claims.Add(new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName));
 
-            // add roles
             foreach (var userRole in userRoles)
             {
                 claims.Add(new Claim("role", userRole));
@@ -79,13 +110,10 @@ namespace ProjetoPraticoCodenation.Controllers
             var identityClaims = new ClaimsIdentity();
             identityClaims.AddClaims(claims);
 
-            // criar token
             var tokenHandler = new JwtSecurityTokenHandler();
 
-            // chave - app settings
             var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
 
-            // criar token baseado nas info
             var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
             {
                 Issuer = _appSettings.Emissor,
@@ -95,10 +123,8 @@ namespace ProjetoPraticoCodenation.Controllers
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             });
 
-            // gerar código
             var encodedToken = tokenHandler.WriteToken(token);
 
-            // add obj resposta
             var response = new LoginResponseDTO
             {
                 AccessToken = encodedToken,
@@ -114,9 +140,5 @@ namespace ProjetoPraticoCodenation.Controllers
             return response;
         }
 
-
     }
-
-
 }
-
