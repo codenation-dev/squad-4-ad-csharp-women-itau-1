@@ -23,4 +23,9 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Filters\" />
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
+
 </Project>

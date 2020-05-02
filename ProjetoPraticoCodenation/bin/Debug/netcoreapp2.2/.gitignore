@@ -2,3 +2,4 @@
 *.dll
 *.runtimeconfig.dev.json
 *.runtimeconfig.json
+*.deps.json
