@@ -69,6 +69,26 @@ namespace ProjetoPraticoCodenation.test.Model
             Assert.Equal(expected, actual, new LogErroDTOComparer());
         }
 
+        [Theory]
+        [InlineData("500 – erro interno do servidor", "Desenvolvimento")]
+        [InlineData("404 não encontrado.", "Produção")]
+        public void Deve_Retornar_Ok_Pesquisa_Por_Origem_Ambiente(string origem, string ambiente)
+        {
+            var fakes = new FakeContext("LogErroControllerTestOrigem");
+
+            var fakeService = fakes.FakeLogErroService().Object;
+
+            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorOrigemAmbiente(origem, ambiente, true, false));
+
+            var controller = new LogErroController(fakeService, fakes.Mapper);
+            var result = controller.GetOrigemAmbiente(origem, ambiente, true, false);
+
+            Assert.IsType<OkObjectResult>(result.Result);
+            var actual = (result.Result as OkObjectResult).Value as List<LogErroDTO>;
+            Assert.NotNull(actual);
+            Assert.Equal(expected, actual, new LogErroDTOComparer());
+        }
+
         [Fact]
         public void Deve_Retornar_OK_Post()
         {

@@ -16,7 +16,7 @@ namespace ProjetoPraticoCodenation.ConfigStartup
             IConfiguration configuration)
         {
             services.AddDbContext<ProjetoPraticoContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionAgatha")));
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionRaquel")));
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
