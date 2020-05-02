@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ProjetoPraticoCodenation.Models;
-using Microsoft.EntityFrameworkCore;
 using ProjetoPraticoCodenation.Data;
 
 namespace ProjetoPraticoCodenation.Services
@@ -25,14 +24,15 @@ namespace ProjetoPraticoCodenation.Services
             {
                 return _context.Logs.Where(x => x.Nivel == nivel)
                                     .Where(x => x.Ambiente == ambiente)
+                                    .Where(x => x.Arquivado == false)
                                     .OrderBy(x => x.Nivel)
                                     .ToList();
             }
             else
             {
-
                 return _context.Logs.Where(x => x.Nivel == nivel)
                                     .Where(x => x.Ambiente == ambiente)
+                                    .Where(x => x.Arquivado == false)
                                     .ToList();
             }
 
@@ -42,18 +42,20 @@ namespace ProjetoPraticoCodenation.Services
         {
             if (ordenarPorNivel)
             {
-                return _context.Logs.Where(x => x.Descricao == descricao).
-                                 Where(x => x.Ambiente == ambiente).
-                                 Distinct().
-                                 OrderBy(x => x.Nivel).
-                                 ToList();
+                return _context.Logs.Where(x => x.Descricao == descricao)
+                                 .Where(x => x.Ambiente == ambiente)
+                                 .Where(x => x.Arquivado == false)
+                                 .Distinct()
+                                 .OrderBy(x => x.Nivel)
+                                 .ToList();
             }
             else
             {
-                return _context.Logs.Where(x => x.Descricao == descricao).
-                  Where(x => x.Ambiente == ambiente).
-                  Distinct().
-                  ToList();
+                return _context.Logs.Where(x => x.Descricao == descricao)
+                  .Where(x => x.Ambiente == ambiente)
+                  .Where(x => x.Arquivado == false)
+                  .Distinct()
+                  .ToList();
             }
         }
 
@@ -63,6 +65,7 @@ namespace ProjetoPraticoCodenation.Services
             {
                 return _context.Logs.Where(x => x.Origem == origem)
                             .Where(x => x.Ambiente == ambiente)
+                            .Where(x => x.Arquivado == false)
                             .OrderBy(x => x.Nivel)
                             .ToList();
             }
@@ -70,8 +73,8 @@ namespace ProjetoPraticoCodenation.Services
             {
                 return _context.Logs.Where(x => x.Origem == origem)
                      .Where(x => x.Ambiente == ambiente)
+                     .Where(x => x.Arquivado == false)
                      .ToList();
-
             }
         }
 
