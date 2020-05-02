@@ -3,3 +3,5 @@
 *.test.deps.json
 *.pdb
 *.dll
+*.test.runtimeconfig.dev.json
+*.test.runtimeconfig.json

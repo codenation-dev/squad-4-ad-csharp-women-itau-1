@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Xunit.Extensions;
 using System;
 using Microsoft.EntityFrameworkCore;
+using ProjetoPraticoCodenation.Data;
 
 namespace ProjetoPraticoCodenation.test
 {

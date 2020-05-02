@@ -2,6 +2,7 @@
 using System.Linq;
 using ProjetoPraticoCodenation.Models;
 using Microsoft.EntityFrameworkCore;
+using ProjetoPraticoCodenation.Data;
 
 namespace ProjetoPraticoCodenation.Services
 {

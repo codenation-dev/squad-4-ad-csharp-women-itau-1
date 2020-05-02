@@ -12,7 +12,6 @@ namespace ProjetoPraticoCodenation.ConfigStartup
     {
         public AutoMapperProfile()
         {
-            CreateMap<Usuario, UsuarioDTO>().ReverseMap();
             CreateMap<LogErro, LogErroDTO>().ReverseMap();
         }
 

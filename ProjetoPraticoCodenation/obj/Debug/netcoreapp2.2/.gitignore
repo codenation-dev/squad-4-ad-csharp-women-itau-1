@@ -5,3 +5,4 @@
 *.csproj.CoreCompileInputs.cache
 *.csproj.FileListAbsolute.txt
 *.RazorAssemblyInfo.cs
+*.AssemblyInfo.cs

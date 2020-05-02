@@ -44,7 +44,7 @@ namespace ProjetoPraticoCodenation.Models
         [StringLength(50)]
         public string Ambiente { get; set; }
 
-        [Column("nr_ip_origem")]
+        [Column("ds_origem")]
         [Required]
         [StringLength(50)]
         public string Origem { get; set; }

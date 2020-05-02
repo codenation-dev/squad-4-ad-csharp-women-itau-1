@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using Newtonsoft.Json;
+using ProjetoPraticoCodenation.Data;
 using ProjetoPraticoCodenation.DTOs;
 using ProjetoPraticoCodenation.Models;
 using ProjetoPraticoCodenation.Services;
@@ -30,14 +31,11 @@ namespace ProjetoPraticoCodenation.test
                 .UseInMemoryDatabase(databaseName: $"ProjetoPratico_{testName}")
                 .Options;
 
-            DataFileNames.Add(typeof(Usuario), $"FakeData{Path.DirectorySeparatorChar}usuario.json");
             DataFileNames.Add(typeof(LogErro), $"FakeData{Path.DirectorySeparatorChar}logerro.json");
-            DataFileNames.Add(typeof(UsuarioDTO), $"FakeData{Path.DirectorySeparatorChar}usuario.json");
             DataFileNames.Add(typeof(LogErroDTO), $"FakeData{Path.DirectorySeparatorChar}logerro.json");
 
             var configuration = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Usuario, UsuarioDTO>().ReverseMap();
                 cfg.CreateMap<LogErro, LogErroDTO>().ReverseMap();
             });
 
@@ -46,7 +44,6 @@ namespace ProjetoPraticoCodenation.test
 
         public void FillWithAll()
         {
-            FillWith<Usuario>();
             FillWith<LogErro>();
         }
 

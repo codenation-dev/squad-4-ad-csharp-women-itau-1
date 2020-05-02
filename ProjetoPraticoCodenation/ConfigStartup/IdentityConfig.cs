@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-//using IdentityAuth.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-//using IdentityAuth.Models;
 using ProjetoPraticoCodenation.Data;
 using ProjetoPraticoCodenation.Models;
 
@@ -17,12 +15,12 @@ namespace ProjetoPraticoCodenation.ConfigStartup
         public static IServiceCollection AddIdentityConfiguration(this IServiceCollection services,
             IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ProjetoPraticoContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DefaultConnectionAgatha")));
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddEntityFrameworkStores<ProjetoPraticoContext>()
                 .AddDefaultTokenProviders();
 
   
