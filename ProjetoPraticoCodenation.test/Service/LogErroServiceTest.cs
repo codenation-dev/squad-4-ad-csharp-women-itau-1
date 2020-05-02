@@ -54,7 +54,7 @@ namespace ProjetoPraticoCodenation.test
 
         [Theory]
         [InlineData("error", "Producao")]
-        [InlineData("debug", "Homologacao")]
+        [InlineData("warning", "Desenvolvimento")]
         public void Deve_Retornar_Log_Por_Nivel_e_Ambiente(string nivel, string ambiente)
         {
             var fakeContext = new FakeContext("LocalizarPorNivelAmbiente");
@@ -62,20 +62,25 @@ namespace ProjetoPraticoCodenation.test
 
             using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
             {
-                var expected = fakeContext.GetFakeData<LogErro>().Where(x => x.Nivel == nivel)
-                                                                .Where(x => x.Ambiente == ambiente);
+                var dados = fakeContext.GetFakeData<LogErro>();
+                var expected = dados.Where(x => x.Nivel == nivel)
+                                    .Where(x => x.Ambiente == ambiente)
+                                    .Where(x => x.Arquivado == false)
+                                    .ToList();
 
                 var service = new LogErroService(context);
 
                 var actual = service.LocalizarPorNivelAmbiente(nivel, ambiente, true, false);
 
+                Assert.NotEmpty(actual);
+                Assert.NotEmpty(expected);
                 Assert.Equal(expected, actual, new LogErroComparer());
             }
         }
 
         [Theory]
-        [InlineData("Erro ao logar no sistema", "Producao")]
-        [InlineData("Erro mudar senha do usuario", "Homologacao")]
+        [InlineData("Erro 504 Gateway Timeout", "Producao")]
+        [InlineData("404 nao encontrado.", "Producao")]
         public void Deve_Retornar_Log_Por_Descricao_e_Ambiente(string descricao, string ambiente)
         {
             var fakeContext = new FakeContext("LocalizarPorDescricaoAmbiente");
@@ -83,20 +88,26 @@ namespace ProjetoPraticoCodenation.test
 
             using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
             {
-                var expected = fakeContext.GetFakeData<LogErro>().Where(x => x.Descricao == descricao)
-                                                                .Where(x => x.Ambiente == ambiente);
+                var dados = fakeContext.GetFakeData<LogErro>();
+                var expected = dados .Where(x => x.Descricao == descricao)
+                                     .Where(x => x.Ambiente == ambiente)
+                                     .Where(x => x.Arquivado == false)
+                                     .OrderBy(x=> x.Nivel)
+                                     .ToList();
 
                 var service = new LogErroService(context);
 
                 var actual = service.LocalizarPorDescricaoAmbiente(descricao, ambiente, true, false);
 
+                Assert.NotEmpty(actual);
+                Assert.NotEmpty(expected);
                 Assert.Equal(expected, actual, new LogErroComparer());
             }
         }
 
 
         [Theory]
-        [InlineData("127.0.0.1", "Produção")]
+        [InlineData("127.0.0.1", "Producao")]
         [InlineData("app.server.com.br", "Homologacao")]
         public void Deve_Retornar_Log_Por_Origem_e_Ambiente(string origem, string ambiente)
         {
@@ -105,13 +116,19 @@ namespace ProjetoPraticoCodenation.test
 
             using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
             {
-                var expected = fakeContext.GetFakeData<LogErro>().Where(x => x.Origem == origem)
-                                                                .Where(x => x.Ambiente == ambiente);
+                var dados = fakeContext.GetFakeData<LogErro>();
+                var expected = dados.Where(x => x.Origem == origem)
+                                    .Where(x => x.Ambiente == ambiente)
+                                    .Where(x => x.Arquivado == false)
+                                    .OrderBy(x => x.Nivel)
+                                    .ToList();
 
                 var service = new LogErroService(context);
 
                 var actual = service.LocalizarPorOrigemAmbiente(origem, ambiente, true, false);
 
+                Assert.NotEmpty(actual);
+                Assert.NotEmpty(expected);
                 Assert.Equal(expected, actual, new LogErroComparer());
             }
         }

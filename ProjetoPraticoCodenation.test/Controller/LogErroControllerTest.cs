@@ -32,8 +32,8 @@ namespace ProjetoPraticoCodenation.test.Model
         }
 
         [Theory]
+        [InlineData("Erro 504 Gateway Timeout", "Producao")]
         [InlineData("404 nao encontrado.", "Producao")]
-        [InlineData("403 Proibido", "Homologacao")]
         public void Deve_Retornar_Ok_Pesquisa_Por_Descricao_Ambiente(string descricao, string ambiente)
         {
             var fakes = new FakeContext("LogErroControllerTestDescricao");
@@ -50,12 +50,12 @@ namespace ProjetoPraticoCodenation.test.Model
         }
 
         [Theory]
-        [InlineData("debug", "Homologacao")]
-        [InlineData("warning", "Desenvolvimento")]      
+        [InlineData("error", "Producao")]
+        [InlineData("warning", "Desenvolvimento")]
         public void Deve_Retornar_Ok_Pesquisa_Por_Nivel_Ambiente(string nivel, string ambiente)
         {
             var fakes = new FakeContext("LogErroControllerTestNivel");
-            
+
             var fakeService = fakes.FakeLogErroService().Object;
 
             var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorNivelAmbiente(nivel, ambiente, true, false));
@@ -76,7 +76,7 @@ namespace ProjetoPraticoCodenation.test.Model
             var fakeService = fakes.FakeLogErroService().Object;
             var expected = fakes.Get<LogErroDTO>().ToList();
 
-            for(int i = 0; i <= expected.Count-1; i++)
+            for (int i = 0; i <= expected.Count - 1; i++)
             {
                 expected[i].Id = 0;
                 expected[i].Arquivado = false;
@@ -90,7 +90,7 @@ namespace ProjetoPraticoCodenation.test.Model
 
             Assert.NotNull(actual);
             Assert.Equal(expected.Count, actual.Count);
-            for (int i = 0; i <= actual.Count-1; i++)
+            for (int i = 0; i <= actual.Count - 1; i++)
             {
                 Assert.Equal(999, actual[i].Id);
 

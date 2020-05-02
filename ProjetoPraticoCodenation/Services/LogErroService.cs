@@ -62,7 +62,6 @@ namespace ProjetoPraticoCodenation.Services
                 return _context.Logs.Where(x => x.Descricao == descricao)
                                  .Where(x => x.Ambiente == ambiente)
                                  .Where(x => x.Arquivado == false)
-                                 .Distinct()
                                  .OrderBy(x => x.Nivel)
                                  .ToList();
             }

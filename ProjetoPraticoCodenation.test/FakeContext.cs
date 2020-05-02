@@ -97,6 +97,8 @@ namespace ProjetoPraticoCodenation.test
                     return logs
                      .Where(l => l.Nivel == nivel)
                      .Where(l => l.Ambiente == ambiente)
+                     .Where(l => l.Arquivado == false)
+                     .OrderBy(l => l.Nivel)
                      .ToList();
                 });
 
@@ -108,6 +110,8 @@ namespace ProjetoPraticoCodenation.test
                     var lista = logs
                      .Where(l => l.Descricao == descricao)
                      .Where(l => l.Ambiente == ambiente)
+                     .Where(l => l.Arquivado == false)
+                     .OrderBy(l => l.Nivel)
                      .ToList();
 
                     return lista;

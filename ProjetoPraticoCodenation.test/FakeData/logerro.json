@@ -167,5 +167,18 @@
     "origem": "127.0.0.10",
     "arquivado": 0,
     "usuarioOrigem": "anigro"
+  },
+  {
+    "id": 15,
+    "titulo": "Erro ao mudar senha do usuario",
+    "descricao": "403 Proibido",
+    "dataCriacao": "2020-04-03 00:00:00",
+    "evento": "100",
+    "nivel": "debug",
+    "ambiente": "Homologacao",
+    "origem": "app.server.com.br",
+    "arquivado": 0,
+    "usuarioOrigem": "raquel"
+
   }
 ]
