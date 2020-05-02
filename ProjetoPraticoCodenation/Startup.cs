@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using ProjetoPraticoCodenation.ConfigStartup;
 using ProjetoPraticoCodenation.Data;
+using ProjetoPraticoCodenation.Models;
 using ProjetoPraticoCodenation.Services;
 using Swashbuckle.AspNetCore.Swagger;
 using Swashbuckle.AspNetCore.SwaggerGen;
@@ -83,6 +84,10 @@ namespace ProjetoPraticoCodenation
                     Description = "Insira o token JWT dessa maneira: Bearer {seu token}"
                 });
             });
+
+            services.AddTransient<IEmailServices, EmailServices>();
+
+            services.Configure<SendGridOptions>(Configuration.GetSection("SendGridOptions"));
 
         }
 

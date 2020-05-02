@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
-//using SendGrid;
+using SendGrid;
+using SendGrid;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace ProjetoPraticoCodenation.Models
 {
-    class ErrorResponse
+    public class ErrorResponse
     {
 
         public int Codigo { get; set; }
@@ -38,6 +39,13 @@ namespace ProjetoPraticoCodenation.Models
             };
         }
 
-        
+        public static ErrorResponse FromEmail(Response response)
+        {
+            return new ErrorResponse
+            {
+                Codigo = 600,
+                Mensagem = $"Não foi possível enviar e-mail, {response.StatusCode}"
+            };
+        }
     }
 }

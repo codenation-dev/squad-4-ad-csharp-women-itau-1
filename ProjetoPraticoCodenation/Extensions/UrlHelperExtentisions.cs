@@ -2,7 +2,7 @@
 
 namespace ProjetoPraticoCodenation.Extensions
 {
-    public static class UrlHelperExtentisions
+    public static class UrlHelperExtensions
     {
         public static string ResetPasswordCallbackLink(this IUrlHelper urlHelper, string userId, string code, string scheme)
         {

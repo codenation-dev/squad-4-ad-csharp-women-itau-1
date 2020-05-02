@@ -11,7 +11,9 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using ProjetoPraticoCodenation.DTOs;
 using ProjetoPraticoCodenation.Models;
-
+using ProjetoPraticoCodenation.Extensions;
+using System.Web;
+using ProjetoPraticoCodenation.Services;
 
 namespace ProjetoPraticoCodenation.Controllers
 {
@@ -24,12 +26,14 @@ namespace ProjetoPraticoCodenation.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly AppSettings _appSettings;
+        private readonly IEmailServices _emailServices;
 
-        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings)
+        public AuthController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IOptions<AppSettings> appSettings, IEmailServices emailServices)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _appSettings = appSettings.Value;
+            _emailServices = emailServices;
         }
 
         [HttpGet]
@@ -90,6 +94,64 @@ namespace ProjetoPraticoCodenation.Controllers
             await _signInManager.SignOutAsync();
             return Ok();
         }
+
+
+        [HttpPost("forgotPassword")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordDTO forgotPassword)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = await _userManager.FindByEmailAsync(forgotPassword.Email);
+            if (user == null)
+            {
+                return NotFound($"Usuário '{forgotPassword}' não encontrado.");
+            }
+            else
+            {
+                var forgotMail = await ForgotMainPassword(user);
+                if (forgotMail.Enviado)
+                    return Ok();
+
+                return Unauthorized(forgotMail.error);
+            }
+        }
+
+
+        private async Task<EmailResponse> ForgotMainPassword(IdentityUser user)
+        {
+   
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+            
+            //Gerar link
+            var callbackUrl = Url.ResetPasswordCallbackLink(user.Id, HttpUtility.UrlEncode(code), Request.Scheme);
+
+            return await _emailServices.SendEmailResetPasswordAsync(user.Email, callbackUrl);
+        }
+
+
+
+        [HttpPost("resetPasswordConfirm")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPasswordConfirm(ResetPasswordConfirmDTO resetPassword)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var user = await _userManager.FindByEmailAsync(resetPassword.Email);
+            if (user == null)
+            {
+                return NotFound($"Usuário ID não encontrado.");
+            }
+            else
+            {
+     
+                return Ok(await _userManager.ResetPasswordAsync(user, resetPassword.Code, resetPassword.Password));
+            }
+        }
+
+
 
         private async Task<LoginResponseDTO> GerarJwt(string email)
         {

@@ -7,7 +7,7 @@ ds_titulo_log
 ,cd_evento
 ,cd_nivel
 ,ds_ambiente
-,nr_ip_origem
+,ds_origem
 ,fl_arquivado
 ,nm_usuario_origem
 )
@@ -19,7 +19,7 @@ ds_titulo_log = 'Erro ao logar no sistema'
 ,cd_evento = '1000'
 ,cd_nivel = 'error'
 ,ds_ambiente = 'Produção'
-,nr_ip_origem = '127.0.0.1'
+,ds_origem = '127.0.0.1'
 ,fl_arquivado = 0
 ,nm_usuario_origem = 'admin'
 
@@ -32,7 +32,7 @@ ds_titulo_log = 'Erro carregar pagina'
 ,cd_evento = '1000'
 ,cd_nivel =  'error'
 ,ds_ambiente = 'Produção'
-,nr_ip_origem =  '127.0.0.10'
+,ds_origem =  '127.0.0.10'
 ,fl_arquivado = 1
 ,nm_usuario_origem = 'anigro'
 
@@ -45,7 +45,7 @@ ds_titulo_log = 'Erro acessar site'
 ,cd_evento =  '300'
 ,cd_nivel =  'warning'
 ,ds_ambiente ='Desenvolvimento'
-,nr_ip_origem =  '10.0.0.1'
+,ds_origem =  '10.0.0.1'
 ,fl_arquivado = 0
 ,nm_usuario_origem = 'elis'
 
@@ -58,7 +58,7 @@ ds_titulo_log = 'Erro mudar senha do usuario'
 ,cd_evento = '100'
 ,cd_nivel =  'debug'
 ,ds_ambiente = 'Homologação'
-,nr_ip_origem =  'app.server.com.br'
+,ds_origem =  'app.server.com.br'
 ,fl_arquivado = 0
 ,nm_usuario_origem = 'raquel'
 
@@ -71,6 +71,6 @@ ds_titulo_log =  'Erro ao acessar relatorio 1000'
 ,cd_evento =  '11'
 ,cd_nivel =  'error'
 ,ds_ambiente = 'Desenvolvimento'
-,nr_ip_origem = 'app.server.com.br'
+,ds_origem = 'app.server.com.br'
 ,fl_arquivado = 1
 ,nm_usuario_origem = 'sheyla'
