@@ -104,6 +104,7 @@ namespace ProjetoPraticoCodenation.Controllers
                 return BadRequest(ModelState);
 
             var user = await _userManager.FindByEmailAsync(forgotPassword.Email);
+
             if (user == null)
             {
                 return NotFound($"Usuário '{forgotPassword}' não encontrado.");
@@ -113,7 +114,6 @@ namespace ProjetoPraticoCodenation.Controllers
                 var forgotMail = await ForgotMainPassword(user);
                 if (forgotMail.Enviado)
                     return Ok();
-
                 return Unauthorized(forgotMail.error);
             }
         }
@@ -130,6 +130,31 @@ namespace ProjetoPraticoCodenation.Controllers
             return await _emailServices.SendEmailResetPasswordAsync(user.Email, callbackUrl);
         }
 
+
+        // buscar dados através do usuário passado
+        [HttpGet("resetPassword")]
+        [AllowAnonymous]
+        public async Task<IActionResult> ResetPassword(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return BadRequest("Não foi possível resetar a senha");
+            }
+
+            var resetPassword = new ResetPasswordDTO();
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound($"Usuário ID '{userId}' não encontrado.");
+            }
+            else
+            {
+                resetPassword.Code = code;
+                resetPassword.Email = user.Email;
+                resetPassword.UserId = userId;
+                return Ok(resetPassword);
+            }
+        }
 
 
         [HttpPost("resetPasswordConfirm")]
