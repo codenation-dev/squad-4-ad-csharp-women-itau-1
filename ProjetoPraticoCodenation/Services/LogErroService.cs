@@ -30,10 +30,27 @@ namespace ProjetoPraticoCodenation.Services
             }
             else
             {
-                return _context.Logs.Where(x => x.Nivel == nivel)
-                                    .Where(x => x.Ambiente == ambiente)
-                                    .Where(x => x.Arquivado == false)
-                                    .ToList();
+                var frequencia = _context.Logs
+                                        .GroupBy(n => new
+                                        {
+                                            n.Evento
+                                        })
+                                        .Select(g => new
+                                        {
+                                            g.Key.Evento,
+                                            frequencia = g.Count()
+                                        });
+
+                var ordered =
+                        from l in _context.Logs
+                        join f in frequencia on l.Evento equals f.Evento
+                        where l.Nivel == nivel
+                        where l.Ambiente == ambiente
+                        where l.Arquivado == false
+                        orderby f.frequencia descending
+                        select l;
+
+                return ordered.ToList();
             }
 
         }
@@ -51,11 +68,27 @@ namespace ProjetoPraticoCodenation.Services
             }
             else
             {
-                return _context.Logs.Where(x => x.Descricao == descricao)
-                  .Where(x => x.Ambiente == ambiente)
-                  .Where(x => x.Arquivado == false)
-                  .Distinct()
-                  .ToList();
+                var frequencia = _context.Logs
+                                        .GroupBy(n => new
+                                        {
+                                            n.Evento
+                                        })
+                                        .Select(g => new
+                                        {
+                                            g.Key.Evento,
+                                            frequencia = g.Count()
+                                        });
+
+                var ordered =
+                        from l in _context.Logs
+                        join f in frequencia on l.Evento equals f.Evento
+                        where l.Descricao == descricao
+                        where l.Ambiente == ambiente
+                        where l.Arquivado == false
+                        orderby f.frequencia descending
+                        select l;
+
+                return ordered.ToList();
             }
         }
 
@@ -71,10 +104,27 @@ namespace ProjetoPraticoCodenation.Services
             }
             else
             {
-                return _context.Logs.Where(x => x.Origem == origem)
-                     .Where(x => x.Ambiente == ambiente)
-                     .Where(x => x.Arquivado == false)
-                     .ToList();
+                var frequencia = _context.Logs
+                                        .GroupBy(n => new
+                                        {
+                                            n.Evento
+                                        })
+                                        .Select(g => new
+                                        {
+                                            g.Key.Evento,
+                                            frequencia = g.Count()
+                                        });
+
+                var ordered =
+                        from l in _context.Logs
+                        join f in frequencia on l.Evento equals f.Evento
+                        where l.Origem == origem
+                        where l.Ambiente == ambiente
+                        where l.Arquivado == false
+                        orderby f.frequencia descending
+                        select l;
+
+                return ordered.ToList();
             }
         }
 
