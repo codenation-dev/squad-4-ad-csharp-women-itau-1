@@ -33,7 +33,7 @@ namespace ProjetoPraticoCodenation.Services
                 };
 
 
-                msg.AddTo(new EmailAddress("eldayane@gmail.com", email));
+                msg.AddTo(new EmailAddress("eldayane@gmail.com", email)); //para fazer teste no meu email
                 var responseSend = await client.SendEmailAsync(msg);
                 var retorno = new EmailResponse();
                 retorno.Enviado = true;
