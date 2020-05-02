@@ -30,8 +30,6 @@ namespace ProjetoPraticoCodenation
         {
             Configuration = configuration;
 
-            //if (!environment.IsEnvironment("Testing"))
-            //    IdentitServerStartup = new StartupIdentityServer(environment);
         }
 
 
@@ -83,7 +81,7 @@ namespace ProjetoPraticoCodenation
                     Description = "Insira o token JWT desta maneira: Bearer {seu token}"
                 });
 
-                // config Identity  - IServiceCollection
+                //config do Identity  - IServiceCollection
                 services.AddIdentityConfiguration(Configuration);
 
 
