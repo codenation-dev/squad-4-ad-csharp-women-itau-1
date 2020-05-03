@@ -117,6 +117,20 @@ namespace ProjetoPraticoCodenation.test
                     return lista;
                 });
 
+            service.Setup(x => x.LocalizarPorOrigemAmbiente(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
+                .Returns((string origem, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia) =>
+                {
+                    var logs = Get<LogErro>();
+                    var lista = logs
+                     .Where(l => l.Origem == origem)
+                     .Where(l => l.Ambiente == ambiente)
+                     .Where(l => l.Arquivado == false)
+                     .OrderBy(l => l.Nivel)
+                     .ToList();
+
+                    return lista;
+                });
+
 
 
             return service;

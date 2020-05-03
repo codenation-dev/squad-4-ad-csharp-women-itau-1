@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 using Microsoft.AspNetCore.Mvc;
 using ProjetoPraticoCodenation.DTOs;
 using ProjetoPraticoCodenation.Controllers;
-using ProjetoPraticoCodenation.Models;
 
 namespace ProjetoPraticoCodenation.test.Model
 {
@@ -70,8 +68,8 @@ namespace ProjetoPraticoCodenation.test.Model
         }
 
         [Theory]
-        [InlineData("500 – erro interno do servidor", "Desenvolvimento")]
-        [InlineData("404 não encontrado.", "Produção")]
+        [InlineData("127.0.0.1", "Producao")]
+        [InlineData("app.server.com.br", "Homologacao")]
         public void Deve_Retornar_Ok_Pesquisa_Por_Origem_Ambiente(string origem, string ambiente)
         {
             var fakes = new FakeContext("LogErroControllerTestOrigem");

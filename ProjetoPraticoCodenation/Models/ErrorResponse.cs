@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using SendGrid;
-using SendGrid;
 using System;
 using System.Collections.Generic;
 using System.Linq;

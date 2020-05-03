@@ -36,12 +36,6 @@ namespace ProjetoPraticoCodenation.Controllers
             _emailServices = emailServices;
         }
 
-        [HttpGet]
-        public async Task<ActionResult> Get()
-        {
-            return Ok("Teste autorização Ok!!!");
-        }
-
         [HttpPost("cadastrar")]
         [AllowAnonymous]
         public async Task<ActionResult> Cadastrar(RegisterUserDTO registerUser)
