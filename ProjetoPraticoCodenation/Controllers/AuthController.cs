@@ -105,10 +105,13 @@ namespace ProjetoPraticoCodenation.Controllers
             }
             else
             {
-                var forgotMail = await ForgotMainPassword(user);
-                if (forgotMail.Enviado)
-                    return Ok();
-                return Unauthorized(forgotMail.error);
+
+                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var resetPassword = new ResetPasswordDTO();
+                resetPassword.Code = code;
+                resetPassword.Email = user.Email;
+                resetPassword.UserId = user.Id;
+                return Ok(resetPassword);
             }
         }
 
@@ -125,30 +128,30 @@ namespace ProjetoPraticoCodenation.Controllers
         }
 
 
-        // buscar dados através do usuário passado
-        [HttpGet("resetPassword")]
-        [AllowAnonymous]
-        public async Task<IActionResult> ResetPassword(string userId, string code)
-        {
-            if (userId == null || code == null)
-            {
-                return BadRequest("Não foi possível resetar a senha");
-            }
+        // utilizar quando for usar sendgrid
+        //[HttpGet("resetPassword")]
+        //[AllowAnonymous]
+        //public async Task<IActionResult> ResetPassword(string userId, string code)
+        //{
+        //    if (userId == null || code == null)
+        //    {
+        //        return BadRequest("Não foi possível resetar a senha");
+        //    }
 
-            var resetPassword = new ResetPasswordDTO();
-            var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return NotFound($"Usuário ID '{userId}' não encontrado.");
-            }
-            else
-            {
-                resetPassword.Code = code;
-                resetPassword.Email = user.Email;
-                resetPassword.UserId = userId;
-                return Ok(resetPassword);
-            }
-        }
+        //    var resetPassword = new ResetPasswordDTO();
+        //    var user = await _userManager.FindByIdAsync(userId);
+        //    if (user == null)
+        //    {
+        //        return NotFound($"Usuário ID '{userId}' não encontrado.");
+        //    }
+        //    else
+        //    {
+        //        resetPassword.Code = code;
+        //        resetPassword.Email = user.Email;
+        //        resetPassword.UserId = userId;
+        //        return Ok(resetPassword);
+        //    }
+        //}
 
 
         [HttpPost("resetPasswordConfirm")]
