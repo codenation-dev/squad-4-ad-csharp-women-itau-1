@@ -30,8 +30,8 @@ namespace ProjetoPraticoCodenation.Data
                 //optionsBuilder.UseSqlServer(@"Server=DESKTOP-KU0JVQH;Database=ProjetoPratico;User Id =user_codenation;Password=1234;Trusted_Connection=False;");
                 //RAQUEL
                 //optionsBuilder.UseSqlServer(@"Server=DESKTOP-52JLAFC\SQLEXPRESS;Database=ProjetoPratico;User Id =codenation;Password=1234;Trusted_Connection=False;");
-                //SHEYLA
-                optionsBuilder.UseSqlServer(@"Server=tcp:squad4.database.windows.net1433;InitialCatalog=ProjetoPratico;PersistSecurityInfo=False;UserID=projetofinal;Password=@ProjetoPratico123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;ConnectionTimeout=30;");
+
+                optionsBuilder.UseSqlServer(@"Server=tcp:squad4.database.windows.net,1433;Initial Catalog=ProjetoPratico;Persist Security Info=False;User ID=projetofinal;Password=@ProjetoPratico123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
     }
 }
