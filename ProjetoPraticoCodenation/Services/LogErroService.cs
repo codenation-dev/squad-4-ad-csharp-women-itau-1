@@ -16,9 +16,10 @@ namespace ProjetoPraticoCodenation.Services
         public LogErro FindById(int id)
         {
             return _context.Logs.Find(id);
+
         }
 
-        public IEnumerable<LogErro> LocalizarPorAmbiente(string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
+        public IList<LogErro> LocalizarPorAmbiente(string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
             if (ordenarPorNivel)
             {
@@ -224,11 +225,6 @@ namespace ProjetoPraticoCodenation.Services
             _context.SaveChanges();
 
             return log;
-        }
-
-        IList<LogErro> ILogErroService.LocalizarPorAmbiente(string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }
