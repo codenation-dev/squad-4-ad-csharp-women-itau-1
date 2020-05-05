@@ -30,6 +30,26 @@ namespace ProjetoPraticoCodenation.test.Model
         }
 
         [Theory]
+        [InlineData("127.0.0.1", "Producao")]
+        [InlineData("app.server.com.br", "Desenvolvimento")]
+        public void Deve_Retornar_Ok_Pesquisa_Por_Ambiente(string ambiente)
+        {
+            var fakes = new FakeContext("LogErroControllerTestAmbiente");
+
+            var fakeService = fakes.FakeLogErroService().Object;
+
+            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorAmbiente(ambiente, true, false));
+
+            var controller = new LogErroController(fakeService, fakes.Mapper);
+            var result = controller.GetAmbiente(ambiente, true, false);
+
+            Assert.IsType<OkObjectResult>(result.Result);
+            var actual = (result.Result as OkObjectResult).Value as List<LogErroDTO>;
+            Assert.NotNull(actual);
+            Assert.Equal(expected, actual, new LogErroDTOComparer());
+        }
+
+        [Theory]
         [InlineData("Erro 504 Gateway Timeout", "Producao")]
         [InlineData("404 nao encontrado.", "Producao")]
         public void Deve_Retornar_Ok_Pesquisa_Por_Descricao_Ambiente(string descricao, string ambiente)
@@ -47,6 +67,7 @@ namespace ProjetoPraticoCodenation.test.Model
             Assert.Equal(expected, actual, new LogErroDTOComparer());
         }
 
+        
         [Theory]
         [InlineData("error", "Producao")]
         [InlineData("warning", "Desenvolvimento")]

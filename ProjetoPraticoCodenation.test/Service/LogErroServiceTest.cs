@@ -55,6 +55,31 @@ namespace ProjetoPraticoCodenation.test
         [Theory]
         [InlineData("error", "Producao")]
         [InlineData("warning", "Desenvolvimento")]
+        public void Deve_Retornar_Log_Por__Ambiente(string ambiente)
+        {
+            var fakeContext = new FakeContext("LocalizarPorAmbiente");
+            fakeContext.FillWith<LogErro>();
+
+            using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
+            {
+                var dados = fakeContext.GetFakeData<LogErro>();
+                var expected = dados.Where(x => x.Ambiente == ambiente)
+                                    .Where(x => x.Arquivado == false)
+                                    .ToList();
+
+                var service = new LogErroService(context);
+
+                var actual = service.LocalizarPorAmbiente(ambiente, true, false);
+
+                Assert.NotEmpty(actual);
+                Assert.NotEmpty(expected);
+                Assert.Equal(expected, actual, new LogErroComparer());
+            }
+        }
+
+        [Theory]
+        [InlineData("error", "Producao")]
+        [InlineData("warning", "Desenvolvimento")]
         public void Deve_Retornar_Log_Por_Nivel_e_Ambiente(string nivel, string ambiente)
         {
             var fakeContext = new FakeContext("LocalizarPorNivelAmbiente");

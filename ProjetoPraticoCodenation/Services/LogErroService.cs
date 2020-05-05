@@ -18,6 +18,42 @@ namespace ProjetoPraticoCodenation.Services
             return _context.Logs.Find(id);
         }
 
+        public IEnumerable<LogErro> LocalizarPorAmbiente(string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
+        {
+            if (ordenarPorNivel)
+            {
+                return _context.Logs.Where(x => x.Ambiente == ambiente)
+                                    .Where(x => x.Arquivado == false)
+                                    .OrderBy(x => x.Nivel)
+                                    .ToList();
+            }
+            else
+            {
+                var frequencia = _context.Logs
+                                        .GroupBy(n => new
+                                        {
+                                            n.Evento
+                                        })
+                                        .Select(g => new
+                                        {
+                                            g.Key.Evento,
+                                            frequencia = g.Count()
+                                        });
+
+                var ordered =
+                        from l in _context.Logs
+                        join f in frequencia on l.Evento equals f.Evento
+                        where l.Ambiente == ambiente
+                        where l.Arquivado == false
+                        orderby f.frequencia descending
+                        select l;
+
+                return ordered.ToList();
+            }
+
+        }
+
+
         public IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
             if (ordenarPorNivel)
@@ -188,6 +224,11 @@ namespace ProjetoPraticoCodenation.Services
             _context.SaveChanges();
 
             return log;
+        }
+
+        IList<LogErro> ILogErroService.LocalizarPorAmbiente(string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

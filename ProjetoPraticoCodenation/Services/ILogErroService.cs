@@ -9,6 +9,8 @@ namespace ProjetoPraticoCodenation.Services
 
         IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia);
 
+        IList<LogErro> LocalizarPorAmbiente(string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia);
+
         IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia);
 
         IList<LogErro> LocalizarPorOrigemAmbiente(string origem, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia);

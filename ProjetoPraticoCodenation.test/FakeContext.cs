@@ -90,6 +90,18 @@ namespace ProjetoPraticoCodenation.test
                 Returns((int id) => Get<LogErro>().FirstOrDefault(x => x.Id == id));
 
 
+            service.Setup(x => x.LocalizarPorAmbiente(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
+                .Returns((string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia) =>
+                {
+                    var logs = Get<LogErro>();
+                    return logs
+                     .Where(l => l.Ambiente == ambiente)
+                     .Where(l => l.Arquivado == false)
+                     .OrderBy(l => l.Nivel)
+                     .ToList();
+                });
+
+
             service.Setup(x => x.LocalizarPorNivelAmbiente(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
                 .Returns((string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia) =>
                 {

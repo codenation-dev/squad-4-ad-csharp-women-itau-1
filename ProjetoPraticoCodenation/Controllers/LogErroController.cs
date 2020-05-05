@@ -62,6 +62,24 @@ namespace ProjetoPraticoCodenation.Controllers
                 return NotFound();
         }
 
+        // GET api/LogErro/{ambiente}
+        [HttpGet("BuscarAmbiente")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<IEnumerable<LogErroDTO>> GetAmbiente(string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
+        {
+            var listaLogErro = _logErroService.LocalizarPorAmbiente(ambiente, ordenarPorNivel, ordenarPorFrequencia);
+
+            if (listaLogErro != null)
+            {
+                var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
+
+                return Ok(retorno);
+            }
+            else
+                return NotFound();
+        }
+
         // GET api/LogErro/{descricao, ambiente}
         [HttpGet("BuscarDescricaoAmbiente")]
         [ProducesResponseType(StatusCodes.Status200OK)]
