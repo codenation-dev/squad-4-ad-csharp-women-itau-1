@@ -18,24 +18,11 @@
 <p align="justify"> Projeto final desenvolvido pelo squad 4 do curso de aceleração em c# promovido pela Codenation.
 Neste projeto vamos implementar uma web API para centralizar registros de erros de aplicações. </p>
 
-Seria bacana listar as principais funcionalidades que sua aplicação oferece a partir de listas, poderíamos fazer de algumas formas:
-
 <h1 id="funcionalidades">### Funcionalidades</h1>
 <ul>
 <li>- Cadastro de Usuário</li>
 <li>- Autenticação de Usuário</li>
 </ul>
-
-### Usando um task list, marcando tarefa como completada ou não  
-
-- [X] Cadastro de usuário
-- [ ] Cadastro de e-mail
-
-### Lista ordenada
-<ol>
-<li> Listagem ordenada </li>
-<li>                   </li>
-</ol>
 
 <h1 id="plataforma"> O que a plataforma é capaz de fazer </h1>
 
