@@ -2,6 +2,7 @@
 using System.Linq;
 using ProjetoPraticoCodenation.Models;
 using ProjetoPraticoCodenation.Data;
+using Microsoft.EntityFrameworkCore.Internal;
 
 namespace ProjetoPraticoCodenation.Services
 {
@@ -18,151 +19,55 @@ namespace ProjetoPraticoCodenation.Services
             return _context.Logs.Find(id);
 
         }
-
-        public IList<LogErro> LocalizarPorAmbiente(string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
+        public IList<LogErro> LocalizarPorAmbiente(string ambiente)
         {
-            if (ordenarPorNivel)
             {
                 return _context.Logs.Where(x => x.Ambiente == ambiente)
                                     .Where(x => x.Arquivado == false)
-                                    .OrderBy(x => x.Nivel)
                                     .ToList();
-            }
-            else
-            {
-                var frequencia = _context.Logs
-                                        .GroupBy(n => new
-                                        {
-                                            n.Evento
-                                        })
-                                        .Select(g => new
-                                        {
-                                            g.Key.Evento,
-                                            frequencia = g.Count()
-                                        });
-
-                var ordered =
-                        from l in _context.Logs
-                        join f in frequencia on l.Evento equals f.Evento
-                        where l.Ambiente == ambiente
-                        where l.Arquivado == false
-                        orderby f.frequencia descending
-                        select l;
-
-                return ordered.ToList();
-            }
-
+            }            
         }
 
-
-        public IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
+        public IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente)
+        {            
+            return _context.Logs.Where(x => x.Nivel == nivel)
+                                .Where(x => x.Ambiente == ambiente)
+                                .Where(x => x.Arquivado == false)
+                                .ToList();      
+        }
+        public IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente)
         {
-            if (ordenarPorNivel)
-            {
-                return _context.Logs.Where(x => x.Nivel == nivel)
-                                    .Where(x => x.Ambiente == ambiente)
-                                    .Where(x => x.Arquivado == false)
-                                    .OrderBy(x => x.Nivel)
+            return _context.Logs.Where(x => x.Descricao == descricao)
+                                .Where(x => x.Ambiente == ambiente)
+                                .Where(x => x.Arquivado == false)
+                                .ToList();
+        }
+        public IList<LogErro> LocalizarPorOrigemAmbiente(string origem, string ambiente)
+        {
+            return _context.Logs.Where(x => x.Origem == origem)
+                                .Where(x => x.Ambiente == ambiente)
+                                .Where(x => x.Arquivado == false)
+                                .ToList();
+        }
+        public IList<LogErro> OrdenarPorFrequencia(IList<LogErro> logErros)
+        {
+            var ordenacao = logErros.GroupBy(x => x.Nivel)
+                                    .Select(group => new
+                                    {
+                                        Nivel = group.Key,
+                                        Frequencia = group.Count()
+                                    })
+                                    .OrderByDescending(x => x.Frequencia)
                                     .ToList();
-            }
-            else
-            {
-                var frequencia = _context.Logs
-                                        .GroupBy(n => new
-                                        {
-                                            n.Evento
-                                        })
-                                        .Select(g => new
-                                        {
-                                            g.Key.Evento,
-                                            frequencia = g.Count()
-                                        });
 
-                var ordered =
-                        from l in _context.Logs
-                        join f in frequencia on l.Evento equals f.Evento
-                        where l.Nivel == nivel
-                        where l.Ambiente == ambiente
-                        where l.Arquivado == false
-                        orderby f.frequencia descending
-                        select l;
-
-                return ordered.ToList();
-            }
-
+            var ordenacaoFrequencia = ordenacao.Select(x => x.Nivel).ToList();
+            return logErros.OrderBy(x => ordenacaoFrequencia.IndexOf(x.Nivel)).ToList();
         }
+        public IList<LogErro> OrdenarPorNivel(IList<LogErro> logErros)
 
-        public IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            if (ordenarPorNivel)
-            {
-                return _context.Logs.Where(x => x.Descricao == descricao)
-                                 .Where(x => x.Ambiente == ambiente)
-                                 .Where(x => x.Arquivado == false)
-                                 .OrderBy(x => x.Nivel)
-                                 .ToList();
-            }
-            else
-            {
-                var frequencia = _context.Logs
-                                        .GroupBy(n => new
-                                        {
-                                            n.Evento
-                                        })
-                                        .Select(g => new
-                                        {
-                                            g.Key.Evento,
-                                            frequencia = g.Count()
-                                        });
-
-                var ordered =
-                        from l in _context.Logs
-                        join f in frequencia on l.Evento equals f.Evento
-                        where l.Descricao == descricao
-                        where l.Ambiente == ambiente
-                        where l.Arquivado == false
-                        orderby f.frequencia descending
-                        select l;
-
-                return ordered.ToList();
-            }
-        }
-
-        public IList<LogErro> LocalizarPorOrigemAmbiente(string origem, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
-        {
-            if (ordenarPorNivel)
-            {
-                return _context.Logs.Where(x => x.Origem == origem)
-                            .Where(x => x.Ambiente == ambiente)
-                            .Where(x => x.Arquivado == false)
-                            .OrderBy(x => x.Nivel)
-                            .ToList();
-            }
-            else
-            {
-                var frequencia = _context.Logs
-                                        .GroupBy(n => new
-                                        {
-                                            n.Evento
-                                        })
-                                        .Select(g => new
-                                        {
-                                            g.Key.Evento,
-                                            frequencia = g.Count()
-                                        });
-
-                var ordered =
-                        from l in _context.Logs
-                        join f in frequencia on l.Evento equals f.Evento
-                        where l.Origem == origem
-                        where l.Ambiente == ambiente
-                        where l.Arquivado == false
-                        orderby f.frequencia descending
-                        select l;
-
-                return ordered.ToList();
-            }
-        }
+               return logErros.OrderBy(x => x.Nivel).ToList();
+        }   
 
 
         public void Remover(int id)
@@ -175,7 +80,6 @@ namespace ProjetoPraticoCodenation.Services
                 _context.SaveChanges();
             }
         }
-
 
         public void Arquivar(int id)
         {
@@ -225,6 +129,16 @@ namespace ProjetoPraticoCodenation.Services
             _context.SaveChanges();
 
             return log;
+        }
+
+        public IEnumerable<LogErro> OrdenarPorNivel(IEnumerable<LogErro> listaLogErro)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<LogErro> OrdenarPorFrequencia(IEnumerable<LogErro> listaLogErro)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -49,13 +49,22 @@ namespace ProjetoPraticoCodenation.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<LogErroDTO>> GetNivelAmbiente(string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            var listaLogErro = _logErroService.LocalizarPorNivelAmbiente(nivel, ambiente, ordenarPorNivel, ordenarPorFrequencia);
+            var listaLogErro = _logErroService.LocalizarPorNivelAmbiente(nivel, ambiente);
 
 
             if (listaLogErro != null)
             {
-                var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
+                if (ordenarPorNivel)
+                {
+                    listaLogErro = _logErroService.OrdenarPorNivel(listaLogErro);
+                }
 
+                else if (ordenarPorFrequencia)
+                {
+                    listaLogErro = _logErroService.OrdenarPorFrequencia(listaLogErro);
+                }
+
+                var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
                 return Ok(retorno);
             }
             else
@@ -68,12 +77,20 @@ namespace ProjetoPraticoCodenation.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<LogErroDTO>> GetAmbiente(string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            var listaLogErro = _logErroService.LocalizarPorAmbiente(ambiente, ordenarPorNivel, ordenarPorFrequencia);
+            var listaLogErro = _logErroService.LocalizarPorAmbiente(ambiente);
 
             if (listaLogErro != null)
             {
-                var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
+                if (ordenarPorNivel)
+                {
+                    listaLogErro = _logErroService.OrdenarPorNivel(listaLogErro);
+                }
+                else if (ordenarPorFrequencia)
+                {
+                    listaLogErro = _logErroService.OrdenarPorFrequencia(listaLogErro);
+                }
 
+                var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
                 return Ok(retorno);
             }
             else
@@ -86,12 +103,25 @@ namespace ProjetoPraticoCodenation.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<LogErroDTO>> GetDescricaoAmbiente(string descricao, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente, ordenarPorNivel, ordenarPorFrequencia);
+            var listaLogErro = _logErroService.LocalizarPorDescricaoAmbiente(descricao, ambiente);
 
             if (listaLogErro != null)
             {
-                var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
+                if (ordenarPorNivel)
+                {
 
+                    listaLogErro = _logErroService.OrdenarPorNivel(listaLogErro);
+
+                }
+
+                else if (ordenarPorFrequencia)
+                {
+
+                    listaLogErro = _logErroService.OrdenarPorFrequencia(listaLogErro);
+
+                }
+
+                var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
                 return Ok(retorno);
             }
             else
@@ -104,10 +134,22 @@ namespace ProjetoPraticoCodenation.Controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public ActionResult<IEnumerable<LogErroDTO>> GetOrigemAmbiente(string origem, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia)
         {
-            var listaLogErro = _logErroService.LocalizarPorOrigemAmbiente(origem, ambiente, ordenarPorNivel, ordenarPorFrequencia);
+            var listaLogErro = _logErroService.LocalizarPorOrigemAmbiente(origem, ambiente);
 
             if (listaLogErro != null)
             {
+                if (ordenarPorNivel) {
+                    
+                     listaLogErro = _logErroService.OrdenarPorNivel(listaLogErro);
+
+                }
+
+                else if (ordenarPorFrequencia){
+
+                     listaLogErro = _logErroService.OrdenarPorFrequencia(listaLogErro);
+
+                }
+               
                 var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
                 return Ok(retorno);
             }
