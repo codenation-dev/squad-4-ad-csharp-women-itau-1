@@ -28,29 +28,20 @@ namespace ProjetoPraticoCodenation.Services
                                     .OrderBy(x => x.Nivel)
                                     .ToList();
             }
+            else if (ordenarPorFrequencia)
+            {
+                return _context.Logs.Where(x => x.Ambiente == ambiente)
+                                    .Where(x => x.Arquivado == false)
+                                    .OrderByDescending(x => x.Evento)
+                                    .ToList();
+            }
             else
             {
-                var frequencia = _context.Logs
-                                        .GroupBy(n => new
-                                        {
-                                            n.Evento
-                                        })
-                                        .Select(g => new
-                                        {
-                                            g.Key.Evento,
-                                            frequencia = g.Count()
-                                        });
-
-                var ordered =
-                        from l in _context.Logs
-                        join f in frequencia on l.Evento equals f.Evento
-                        where l.Ambiente == ambiente
-                        where l.Arquivado == false
-                        orderby f.frequencia descending
-                        select l;
-
-                return ordered.ToList();
+                return _context.Logs.Where(x => x.Ambiente == ambiente)
+                                    .Where(x => x.Arquivado == false)
+                                    .ToList();
             }
+           
 
         }
 
@@ -188,6 +179,11 @@ namespace ProjetoPraticoCodenation.Services
             }
         }
 
+        public IList<LogErro> LocalizarArquivados()
+        {
+            return _context.Logs.Where(x => x.Arquivado == true)
+                                    .ToList();
+        }
 
         public void Desarquivar(int id)
         {

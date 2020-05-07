@@ -143,7 +143,15 @@ namespace ProjetoPraticoCodenation.test
                     return lista;
                 });
 
+            service.Setup(x => x.LocalizarArquivados()).
+                Returns(() => {
+                    var logs = Get<LogErro>();
+                    var lista = logs
+                     .Where(l => l.Arquivado == true)
+                     .ToList();
 
+                    return lista;
+                });
 
             return service;
         }

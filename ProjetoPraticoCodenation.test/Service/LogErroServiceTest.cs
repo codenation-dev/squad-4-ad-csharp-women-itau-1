@@ -53,8 +53,8 @@ namespace ProjetoPraticoCodenation.test
         }
 
         [Theory]
-        [InlineData("error", "Producao")]
-        [InlineData("warning", "Desenvolvimento")]
+        [InlineData("Producao")]
+        [InlineData("Desenvolvimento")]
         public void Deve_Retornar_Log_Por__Ambiente(string ambiente)
         {
             var fakeContext = new FakeContext("LocalizarPorAmbiente");
@@ -69,7 +69,7 @@ namespace ProjetoPraticoCodenation.test
 
                 var service = new LogErroService(context);
 
-                var actual = service.LocalizarPorAmbiente(ambiente, true, false);
+                var actual = service.LocalizarPorAmbiente(ambiente, false, false);
 
                 Assert.NotEmpty(actual);
                 Assert.NotEmpty(expected);
@@ -239,6 +239,28 @@ namespace ProjetoPraticoCodenation.test
                 }
 
                 Assert.NotEqual(before, after, new LogErroComparer());
+            }
+        }
+
+        [Fact]
+        public void Deve_Retornar_Log_Por_Arquivados()
+        {
+            var fakeContext = new FakeContext("LocalizarPorArquivados");
+            fakeContext.FillWith<LogErro>();
+
+            using (var context = new ProjetoPraticoContext(fakeContext.FakeOptions))
+            {
+                var dados = fakeContext.GetFakeData<LogErro>();
+                var expected = dados.Where(x => x.Arquivado == true)
+                                    .ToList();
+
+                var service = new LogErroService(context);
+
+                var actual = service.LocalizarArquivados();
+
+                Assert.NotEmpty(actual);
+                Assert.NotEmpty(expected);
+                Assert.Equal(expected, actual, new LogErroComparer());
             }
         }
 

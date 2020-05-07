@@ -15,7 +15,7 @@ namespace ProjetoPraticoCodenation.Services
 
         IList<LogErro> LocalizarPorOrigemAmbiente(string origem, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia);
 
-        IList<LogErro> LocalizarArquivados(int id, bool ordenarPorNivel, bool ordenarPorFrequencia);
+        IList<LogErro> LocalizarArquivados();
 
         void Remover(int id);
 

@@ -166,6 +166,23 @@ namespace ProjetoPraticoCodenation.Controllers
             return Ok();
         }
 
+        [HttpGet("Arquivados")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<LogErroDTO> GetArquivados()
+        {
+            var logErro = _logErroService.LocalizarArquivados();
+
+            if (logErro != null)
+            {
+                var retorno = _mapper.Map<List<LogErroDTO>>(logErro);
+
+                return Ok(retorno);
+            }
+            else
+                return NoContent();
+        }
+
 
         // PUT api/Desarquivar
         [HttpPut("Desarquivar")]
