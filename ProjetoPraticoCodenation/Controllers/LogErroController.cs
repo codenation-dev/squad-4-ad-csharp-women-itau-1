@@ -25,7 +25,6 @@ namespace ProjetoPraticoCodenation.Controllers
             _logErroService = produtoService;
             _mapper = mapper;
         }
-
         [HttpGet("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -42,7 +41,6 @@ namespace ProjetoPraticoCodenation.Controllers
             else
                 return NotFound();
         }
-
         // GET api/LogErro/{nivel, ambiente, teste}
         [HttpGet("BuscarNivelAmbiente")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -58,7 +56,6 @@ namespace ProjetoPraticoCodenation.Controllers
                 {
                     listaLogErro = _logErroService.OrdenarPorNivel(listaLogErro);
                 }
-
                 else if (ordenarPorFrequencia)
                 {
                     listaLogErro = _logErroService.OrdenarPorFrequencia(listaLogErro);
@@ -96,7 +93,6 @@ namespace ProjetoPraticoCodenation.Controllers
             else
                 return NotFound();
         }
-
         // GET api/LogErro/{descricao, ambiente}
         [HttpGet("BuscarDescricaoAmbiente")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -109,16 +105,11 @@ namespace ProjetoPraticoCodenation.Controllers
             {
                 if (ordenarPorNivel)
                 {
-
                     listaLogErro = _logErroService.OrdenarPorNivel(listaLogErro);
-
                 }
-
                 else if (ordenarPorFrequencia)
                 {
-
                     listaLogErro = _logErroService.OrdenarPorFrequencia(listaLogErro);
-
                 }
 
                 var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
@@ -127,7 +118,6 @@ namespace ProjetoPraticoCodenation.Controllers
             else
                 return NotFound();
         }
-
         // GET api/LogErro/{origem, ambiente, teste}
         [HttpGet("BuscarOrigemAmbiente")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -138,16 +128,11 @@ namespace ProjetoPraticoCodenation.Controllers
 
             if (listaLogErro != null)
             {
-                if (ordenarPorNivel) {
-                    
+                if (ordenarPorNivel) {                    
                      listaLogErro = _logErroService.OrdenarPorNivel(listaLogErro);
-
                 }
-
                 else if (ordenarPorFrequencia){
-
                      listaLogErro = _logErroService.OrdenarPorFrequencia(listaLogErro);
-
                 }
                
                 var retorno = _mapper.Map<List<LogErroDTO>>(listaLogErro);
@@ -156,7 +141,22 @@ namespace ProjetoPraticoCodenation.Controllers
             else
                 return NotFound();
         }
+        [HttpGet("Arquivados")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public ActionResult<LogErroDTO> GetArquivados()
+        {
+            var logErro = _logErroService.LocalizarArquivados();
 
+            if (logErro != null)
+            {
+                var retorno = _mapper.Map<List<LogErroDTO>>(logErro);
+
+                return Ok(retorno);
+            }
+            else
+                return NoContent();
+        }
         // POST api/Incluir
         [HttpPost("Incluir")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -190,7 +190,6 @@ namespace ProjetoPraticoCodenation.Controllers
 
             return Ok(retorno);
         }
-
         // PUT api/Arquivar
         [HttpPut("Arquivar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -207,25 +206,6 @@ namespace ProjetoPraticoCodenation.Controllers
 
             return Ok();
         }
-
-        [HttpGet("Arquivados")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public ActionResult<LogErroDTO> GetArquivados()
-        {
-            var logErro = _logErroService.LocalizarArquivados();
-
-            if (logErro != null)
-            {
-                var retorno = _mapper.Map<List<LogErroDTO>>(logErro);
-
-                return Ok(retorno);
-            }
-            else
-                return NoContent();
-        }
-
-
         // PUT api/Desarquivar
         [HttpPut("Desarquivar")]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -242,8 +222,6 @@ namespace ProjetoPraticoCodenation.Controllers
 
             return Ok();
         }
-
-
         // DELETE api/Remover
         [HttpDelete("Remover")]
         [ProducesResponseType(StatusCodes.Status200OK)]
