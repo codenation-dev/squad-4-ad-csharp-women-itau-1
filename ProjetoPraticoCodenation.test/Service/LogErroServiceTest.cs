@@ -69,7 +69,7 @@ namespace ProjetoPraticoCodenation.test
 
                 var service = new LogErroService(context);
 
-                var actual = service.LocalizarPorAmbiente(ambiente, false, false);
+                var actual = service.LocalizarPorAmbiente(ambiente);
 
                 Assert.NotEmpty(actual);
                 Assert.NotEmpty(expected);
@@ -95,7 +95,7 @@ namespace ProjetoPraticoCodenation.test
 
                 var service = new LogErroService(context);
 
-                var actual = service.LocalizarPorNivelAmbiente(nivel, ambiente, true, false);
+                var actual = service.LocalizarPorNivelAmbiente(nivel, ambiente);
 
                 Assert.NotEmpty(actual);
                 Assert.NotEmpty(expected);
@@ -116,13 +116,12 @@ namespace ProjetoPraticoCodenation.test
                 var dados = fakeContext.GetFakeData<LogErro>();
                 var expected = dados .Where(x => x.Descricao == descricao)
                                      .Where(x => x.Ambiente == ambiente)
-                                     .Where(x => x.Arquivado == false)
-                                     .OrderBy(x=> x.Nivel)
+                                     .Where(x => x.Arquivado == false)                              
                                      .ToList();
 
                 var service = new LogErroService(context);
 
-                var actual = service.LocalizarPorDescricaoAmbiente(descricao, ambiente, true, false);
+                var actual = service.LocalizarPorDescricaoAmbiente(descricao, ambiente);
 
                 Assert.NotEmpty(actual);
                 Assert.NotEmpty(expected);
@@ -144,13 +143,12 @@ namespace ProjetoPraticoCodenation.test
                 var dados = fakeContext.GetFakeData<LogErro>();
                 var expected = dados.Where(x => x.Origem == origem)
                                     .Where(x => x.Ambiente == ambiente)
-                                    .Where(x => x.Arquivado == false)
-                                    .OrderBy(x => x.Nivel)
+                                    .Where(x => x.Arquivado == false)                                    
                                     .ToList();
 
                 var service = new LogErroService(context);
 
-                var actual = service.LocalizarPorOrigemAmbiente(origem, ambiente, true, false);
+                var actual = service.LocalizarPorOrigemAmbiente(origem, ambiente);
 
                 Assert.NotEmpty(actual);
                 Assert.NotEmpty(expected);

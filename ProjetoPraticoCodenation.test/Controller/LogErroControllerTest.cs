@@ -31,20 +31,21 @@ namespace ProjetoPraticoCodenation.test.Model
 
         [Theory]
         [InlineData("Producao")]
-        [InlineData("Desenvolvimento")]
         public void Deve_Retornar_Ok_Pesquisa_Por_Ambiente(string ambiente)
         {
             var fakes = new FakeContext("LogErroControllerTestAmbiente");
 
             var fakeService = fakes.FakeLogErroService().Object;
 
-            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorAmbiente(ambiente, true, false));
+            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorAmbiente(ambiente));
 
             var controller = new LogErroController(fakeService, fakes.Mapper);
-            var result = controller.GetAmbiente(ambiente, true, false);
+            var result = controller.GetAmbiente(ambiente, false, false);
 
             Assert.IsType<OkObjectResult>(result.Result);
+
             var actual = (result.Result as OkObjectResult).Value as List<LogErroDTO>;
+
             Assert.NotNull(actual);
             Assert.Equal(expected, actual, new LogErroDTOComparer());
         }
@@ -56,18 +57,20 @@ namespace ProjetoPraticoCodenation.test.Model
         {
             var fakes = new FakeContext("LogErroControllerTestDescricao");
             var fakeService = fakes.FakeLogErroService().Object;
-            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorDescricaoAmbiente(descricao, ambiente, true, false));
+            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorDescricaoAmbiente(descricao, ambiente));
 
             var controller = new LogErroController(fakeService, fakes.Mapper);
-            var result = controller.GetDescricaoAmbiente(descricao, ambiente, true, false);
+            var result = controller.GetDescricaoAmbiente(descricao, ambiente, false, false);
 
             Assert.IsType<OkObjectResult>(result.Result);
+
             var actual = (result.Result as OkObjectResult).Value as List<LogErroDTO>;
+
             Assert.NotEmpty(actual);
             Assert.Equal(expected, actual, new LogErroDTOComparer());
         }
 
-        
+
         [Theory]
         [InlineData("error", "Producao")]
         [InlineData("warning", "Desenvolvimento")]
@@ -77,13 +80,14 @@ namespace ProjetoPraticoCodenation.test.Model
 
             var fakeService = fakes.FakeLogErroService().Object;
 
-            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorNivelAmbiente(nivel, ambiente, true, false));
+            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorNivelAmbiente(nivel, ambiente));
 
             var controller = new LogErroController(fakeService, fakes.Mapper);
-            var result = controller.GetNivelAmbiente(nivel, ambiente, true, false);
+            var result = controller.GetNivelAmbiente(nivel, ambiente, false, false);
 
             Assert.IsType<OkObjectResult>(result.Result);
-            var actual = (result.Result as OkObjectResult).Value as List<LogErroDTO>;
+            var actual = (result.Result as OkObjectResult).Value as List<LogErroDTO>; expected.OrderBy(x => x.Nivel);
+
             Assert.NotEmpty(actual);
             Assert.Equal(expected, actual, new LogErroDTOComparer());
         }
@@ -97,13 +101,16 @@ namespace ProjetoPraticoCodenation.test.Model
 
             var fakeService = fakes.FakeLogErroService().Object;
 
-            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorOrigemAmbiente(origem, ambiente, true, false));
+            var expected = fakes.Mapper.Map<List<LogErroDTO>>(fakeService.LocalizarPorOrigemAmbiente(origem, ambiente));
 
             var controller = new LogErroController(fakeService, fakes.Mapper);
-            var result = controller.GetOrigemAmbiente(origem, ambiente, true, false);
+            var result = controller.GetOrigemAmbiente(origem, ambiente, false, false);
 
             Assert.IsType<OkObjectResult>(result.Result);
+
             var actual = (result.Result as OkObjectResult).Value as List<LogErroDTO>;
+
+
             Assert.NotNull(actual);
             Assert.Equal(expected, actual, new LogErroDTOComparer());
         }

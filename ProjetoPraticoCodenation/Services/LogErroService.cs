@@ -13,7 +13,6 @@ namespace ProjetoPraticoCodenation.Services
         {
             _context = context;
         }
-
         public LogErro FindById(int id)
         {
             return _context.Logs.Find(id);
@@ -21,34 +20,16 @@ namespace ProjetoPraticoCodenation.Services
         }
         public IList<LogErro> LocalizarPorAmbiente(string ambiente)
         {
-            {
-                return _context.Logs.Where(x => x.Ambiente == ambiente)
-                                    .Where(x => x.Arquivado == false)
-                                    .ToList();
-            }
-            else if (ordenarPorFrequencia)
-            {
-                return _context.Logs.Where(x => x.Ambiente == ambiente)
-                                    .Where(x => x.Arquivado == false)
-                                    .OrderByDescending(x => x.Evento)
-                                    .ToList();
-            }
-            else
-            {
-                return _context.Logs.Where(x => x.Ambiente == ambiente)
-                                    .Where(x => x.Arquivado == false)
-                                    .ToList();
-            }
-           
-
+            return _context.Logs.Where(x => x.Ambiente == ambiente)
+                                .Where(x => x.Arquivado == false)
+                                .ToList();
         }
-
-        public IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente)
-        {            
+        public IList<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente)
+        {
             return _context.Logs.Where(x => x.Nivel == nivel)
                                 .Where(x => x.Ambiente == ambiente)
                                 .Where(x => x.Arquivado == false)
-                                .ToList();      
+                                .ToList();
         }
         public IList<LogErro> LocalizarPorDescricaoAmbiente(string descricao, string ambiente)
         {
@@ -79,12 +60,9 @@ namespace ProjetoPraticoCodenation.Services
             return logErros.OrderBy(x => ordenacaoFrequencia.IndexOf(x.Nivel)).ToList();
         }
         public IList<LogErro> OrdenarPorNivel(IList<LogErro> logErros)
-
         {
-               return logErros.OrderBy(x => x.Nivel).ToList();
-        }   
-
-
+            return logErros.OrderBy(x => x.Nivel).ToList();
+        }
         public void Remover(int id)
         {
             var existe = FindById(id);
@@ -95,7 +73,6 @@ namespace ProjetoPraticoCodenation.Services
                 _context.SaveChanges();
             }
         }
-
         public void Arquivar(int id)
         {
             var logerroExistente = FindById(id);
@@ -106,13 +83,11 @@ namespace ProjetoPraticoCodenation.Services
                 _context.SaveChanges();
             }
         }
-
         public IList<LogErro> LocalizarArquivados()
         {
             return _context.Logs.Where(x => x.Arquivado == true)
                                     .ToList();
         }
-
         public void Desarquivar(int id)
         {
             var logerroExistente = FindById(id);
@@ -123,8 +98,6 @@ namespace ProjetoPraticoCodenation.Services
                 _context.SaveChanges();
             }
         }
-
-
         public LogErro Salvar(LogErro log)
         {
             var logerroExistente = _context.Logs
@@ -149,16 +122,6 @@ namespace ProjetoPraticoCodenation.Services
             _context.SaveChanges();
 
             return log;
-        }
-
-        public IEnumerable<LogErro> OrdenarPorNivel(IEnumerable<LogErro> listaLogErro)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<LogErro> OrdenarPorFrequencia(IEnumerable<LogErro> listaLogErro)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

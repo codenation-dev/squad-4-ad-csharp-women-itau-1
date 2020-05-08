@@ -90,54 +90,50 @@ namespace ProjetoPraticoCodenation.test
                 Returns((int id) => Get<LogErro>().FirstOrDefault(x => x.Id == id));
 
 
-            service.Setup(x => x.LocalizarPorAmbiente(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
-                .Returns((string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia) =>
+            service.Setup(x => x.LocalizarPorAmbiente(It.IsAny<string>()))
+                .Returns((string ambiente) =>
                 {
                     var logs = Get<LogErro>();
                     return logs
                      .Where(l => l.Ambiente == ambiente)
                      .Where(l => l.Arquivado == false)
-                     .OrderBy(l => l.Nivel)
                      .ToList();
                 });
 
 
-            service.Setup(x => x.LocalizarPorNivelAmbiente(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
-                .Returns((string nivel, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia) =>
+            service.Setup(x => x.LocalizarPorNivelAmbiente(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns((string nivel, string ambiente) =>
                 {
                     var logs = Get<LogErro>();
                     return logs
                      .Where(l => l.Nivel == nivel)
                      .Where(l => l.Ambiente == ambiente)
                      .Where(l => l.Arquivado == false)
-                     .OrderBy(l => l.Nivel)
                      .ToList();
                 });
 
 
-            service.Setup(x => x.LocalizarPorDescricaoAmbiente(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
-                .Returns((string descricao, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia) =>
+            service.Setup(x => x.LocalizarPorDescricaoAmbiente(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns((string descricao, string ambiente) =>
                 {
                     var logs = Get<LogErro>();
                     var lista = logs
                      .Where(l => l.Descricao == descricao)
                      .Where(l => l.Ambiente == ambiente)
                      .Where(l => l.Arquivado == false)
-                     .OrderBy(l => l.Nivel)
                      .ToList();
 
                     return lista;
                 });
 
-            service.Setup(x => x.LocalizarPorOrigemAmbiente(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>()))
-                .Returns((string origem, string ambiente, bool ordenarPorNivel, bool ordenarPorFrequencia) =>
+            service.Setup(x => x.LocalizarPorOrigemAmbiente(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns((string origem, string ambiente) =>
                 {
                     var logs = Get<LogErro>();
                     var lista = logs
                      .Where(l => l.Origem == origem)
                      .Where(l => l.Ambiente == ambiente)
                      .Where(l => l.Arquivado == false)
-                     .OrderBy(l => l.Nivel)
                      .ToList();
 
                     return lista;
@@ -153,10 +149,17 @@ namespace ProjetoPraticoCodenation.test
                     return lista;
                 });
 
+            service.Setup(x => x.OrdenarPorNivel(It.IsAny<IList<LogErro>>()))
+                .Returns((IList<LogErro> listaLogErros) =>
+                {
+                    var lista = listaLogErros
+                     .OrderBy(l => l.Nivel)
+                     .ToList();
+
+                    return lista;
+                });
+
             return service;
         }
-
-
-
     }
 }

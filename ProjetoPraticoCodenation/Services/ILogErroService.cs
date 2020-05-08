@@ -7,7 +7,7 @@ namespace ProjetoPraticoCodenation.Services
     {
         LogErro FindById(int id);
 
-        IEnumerable<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente);
+        IList<LogErro> LocalizarPorNivelAmbiente(string nivel, string ambiente);
 
         IList<LogErro> LocalizarPorAmbiente(string ambiente);
 
@@ -28,7 +28,6 @@ namespace ProjetoPraticoCodenation.Services
         void Desarquivar(int id);
 
         LogErro Salvar(LogErro log);
-        IEnumerable<LogErro> OrdenarPorNivel(IEnumerable<LogErro> listaLogErro);
-        IEnumerable<LogErro> OrdenarPorFrequencia(IEnumerable<LogErro> listaLogErro);
+   
     }
 }
