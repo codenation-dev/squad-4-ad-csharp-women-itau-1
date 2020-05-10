@@ -83,6 +83,7 @@ namespace ProjetoPraticoCodenation.Controllers
 
         [HttpPost("logout")]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
