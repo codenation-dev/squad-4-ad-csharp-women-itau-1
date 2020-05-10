@@ -1,126 +1,133 @@
-<h1><b>API central de erros</b></h1>
+<h3><b>API - Central de Erros</b></h3>
 
-<h1>### Conteúdos</h1>
-
-  <a href="#descricao"> * [Descrição do Projeto] </a>
-  <a href="#funcionalidades"> * [Funcionalidades] </a>
-  <a href="#plataforma"> * [O que a plataforma é capaz de fazer] </a>
-  <a href="#staus"> * [Status do Projeto] </a>
-  <a href="#demo"> * [Demonstração] </a>
-  <a href="#rodar"> * [Como rodar a aplicação] </a>
-  <a href="#dados"> * [Dados] </a>
-  <a href="#devs"> * [Desenvolvedoras] </a>
-  <a href="#problemas"> * [Resolução de Problemas] </a>
-
-
-<h1 id="#descricao>## Descrição do Projeto</h1>
-
-<p align="justify"> Projeto final desenvolvido pelo squad 4 do curso de aceleração em c# promovido pela Codenation.
-Neste projeto vamos implementar uma web API para centralizar registros de erros de aplicações. </p>
-
-<h1 id="funcionalidades">### Funcionalidades</h1>
+<!---->
+<h4>Conteúdo</h4>
 <ul>
-<li>- Cadastro de Usuário</li>
-<li>- Autenticação de Usuário</li>
+	<li><a href="#descricao">Descrição</a><br></li>
+	<li><a href="#plataforma">Funcionalidades</a><br></li>
+	<li><a href="#rodar">Como rodar a aplicação </a><br></li>
+	<li><a href="#devs">Desenvolvedoras </a><br></li>
 </ul>
 
-<h1 id="plataforma"> O que a plataforma é capaz de fazer </h1>
 
-:pushpin: Cadastrar Usuário
-:pushpin: Autenticar Usuário
-:pushpin: Buscar Usuário Por Id
-:pushpin: Buscar Usuário Por Descrição
-:pushpin: Buscar Usuário Por Ambiente
-:pushpin: Buscar Usuário Por Origem
-:pushpin: Arquivar Usuário
-:pushpin: Desarquivar Usuário
-
-<h1 id="status">Status do Projeto</h1>
-
-<!-- > Status do Projeto: Concluido :heavy_check_mark:
-
-> Status do Projeto: Em desenvolvimento :warning
-
-<h1>Deploy da aplicação?</h1>
-
-http://squad4.database.windows.net/
-
-<h1 id="demo">Demonstração</h1>
-
-<img src="">
-
-<h1 id="rodar">Como rodar a aplicação</h1>
-
-git clone https://github.com/codenation-dev/squad-4-ad-csharp-women-itau-1
-
-Entre na pasta do Projeto:
-
-cd ProjetoPraticoCodenation
-
-Atualize as migrations
-
-dotnet ef database update
-
-Execute a aplicação:
-
-ProjetoPraticoCodenation.sln
-
-Agora é possível acessar a aplicação a partir da rota https://localhost
-
-<h1>Dependências e tecnologias</h1>
-
-## Linguagens e libs utilizadas :books:
-
-- [React PDF](https://react-pdf.org/): versão xx.xxx
-
-<h1 id="dados">Dados</h1>
-
-### LogErro:
-
-|ID     | Título | Descrição | Data Criação | Evento | Nível  | Ambiente | Arquivado | Usuario Origem |
-| ----- | ------ | --------- |------------- | ------ | ------ | -------- | --------- | -------------- |
-| int   | string | string    | datecreate   | string | string | string   | bool      | string         |
-
-### Token
-
-| Nome Usuário | Senha  |
-|    string    | string |
-
-<h1> Como rodar os testes </h1>
-
-/*Para projetos com React*/
-$ npm test
-
-/*Para projetos com Rails*/
-$ rspec
-
-<h1 id="devs"> DESENVOLVEDORAS </h1> :octocat:
-
-[<img src="https://avatars1.githubusercontent.com/u/13949186?s=400&u=586688557ec1ed4362aeb05b822be6b196826314&v=4" width="100">
-<sub Elis Dayane>
-]<br>
-
-[<img src="https://avatars3.githubusercontent.com/u/10854438?s=400&v=4" width="100">
-<sub Agatha Nigro><br>
-<img src="https://avatars1.githubusercontent.com/u/13949186?s=400&u=586688557ec1ed4362aeb05b822be6b196826314&v=4" width="100">
-<sub Elis Dayane><br>
-<img src="https://avatars1.githubusercontent.com/u/60662105?s=400&u=da0dc0c1216598d95e2fec9b364158368b443a6f&v=4" width="100">
-<sub Sheyla Barrientos><br>
-<img src="https://avatars1.githubusercontent.com/u/59710587?s=400&u=d9697e180687f2b9d1830c88522977dc29532f16&v=4" width="100">
-<sub Raquel Prates><br>
-]<br>
+<!---->
+<h3 id="#descricao">Descrição</h3>
+<p> Projeto final desenvolvido pelo squad 4 do curso de aceleração em c# promovido pela Codenation.
+Neste projeto vamos implementar uma web API para centralizar registros de erros de aplicações. </p>
+<h4>Status do Projeto</h4>
+<p>Status do Projeto: Concluído</p>
 
 
-<h1 id="problemas">### Resolvendo problemas</h1>
+<!---->
+<h3 id="plataforma">Funcionalidades</h3>
+<ul style="list-style: none;">  
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/CadastrarUsuario.png"></li>
+		<ul style="list-style: none;"> 
+			<li>Inclui um novo usuario</li>
+		</ul>    
+    <li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/LinkEsqueciMinhaSenhaUsuario.png"></li>
+		<ul style="list-style: none;">
+			<li>Gera um link para o usuario alterar a senha</li>	
+		</ul>			
+    <li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/ResetSenhaUsuario.png"></li>
+		<ul style="list-style: none;">
+			<li>Permite a alteração da senha do usuario</li>	
+		</ul>	
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/LoginUsuario.png"></li>
+		<ul style="list-style: none;"> 
+			<li>Retorna um token para autenticação do usuário nos próximos métodos.</li>
+		</ul>
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/IncluirLogErro.png"></li>
+		<ul style="list-style: none;">
+			<li>Inclui uma lista de logs.</li>	
+		</ul>
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/RemoverLogErro.png"></li>
+		<ul style="list-style: none;">
+			<li>Exclui uma lista de logs</li>		
+		</ul>
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/ArquivarLogErro.png"></li>
+		<ul style="list-style: none;">
+			<li>Arquiva uma lista de logs</li>	
+		</ul>
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/DesarquivarLogErro.png"></li>
+		<ul style="list-style: none;">
+			<li>Desarquiva uma lista de logs</li>	
+		</ul>		
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/LocalizarPorIdLogErro.png"></li>
+		<ul style="list-style: none;">
+			<li>Retorna os dados de um log a partir do id.</li>	
+		</ul>
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/BuscarPorAmbienteLogErro.png"></li>
+		<ul style="list-style: none;">
+			<li>Retorna logs a partir do ambiente.</li>		
+		</ul>
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/BuscarPorDescricaoeAmbienteLogErro.png"></li>
+		<ul style="list-style: none;">
+			<li>Retorna logs a partir do ambiente e descrição.</li>		
+		</ul>
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/BuscarPorOrigemeAmbienteLogErro.png"></li>
+		<ul style="list-style: none;">
+			<li>Retorna logs a partir do ambiente e origem.</li>	
+		</ul>
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/BuscarNiveleAmbienteLogErro.png"></li>
+		<ul style="list-style: none;">
+			<li>Retorna logs a partir do ambiente e nivel.</li>	
+		</ul>
+	<li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/ArquivadoLogErro.png"></li>
+		<ul style="list-style: none;">
+			<li>Retorna logs arquivados.</li>		
+		</ul>	
+</ul>
+<h4>Deploy da aplicação</h4>
+<p>https://aceleradevsquad4.azurewebsites.net/swagger/index.html</p>
 
-Veja alguns problemas que surgiram no desenvolvimento deste projeto e como os resolvemos em
-
- [issues](https://github.com/codenation-dev/squad-4-ad-csharp-women-itau-1/issues)
- 
- 
-
-<!-- A sua aplicação pode ter algum tipo de licença, que da direitos e restrições ao que as pessoas podem fazer com ele é muito importante que você deixe isso claro. -->
-
-<!-- A licença mais utilizada é a MIT, que permite que qualquer pessoa possa usar, modificar e distribuir o seu projeto, mas te resguarda sob qualquer responsabilidade -->
+<!---->
+<h4>Modelo - Log</h4>
+<img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/LogErroDTO.png" width="300">
 
 
+<!---->
+<h3 id="rodar">Como rodar a aplicação</h3>
+<p>Utilizando a Prompt de comando:</p>
+<ul style="list-style: none;">	
+	<li>Clonar o projeto</li>
+		<ul style="list-style: none;">
+			<li>	git clone https://github.com/codenation-dev/squad-4-ad-csharp-women-itau-1</li>	
+		</ul>
+	<li>Acessar a pasta do Projeto</li>
+		<ul style="list-style: none;">	
+			<li>	cd [pasta onde a solução foi clonada]\ProjetoPraticoCodenation </li>
+		</ul>	
+	<li>Executar a aplicação</li>
+		<ul style="list-style: none;">
+			<li>	dotnet run --project ProjetoPraticoCodenation.csproj</li>
+		</ul>
+	<p>Agora é possível acessar a aplicação a partir da rota https://localhost:5001/swagger/index.html</p>
+	<p>Para mudar o endereço do banco de dados, altere o parametro DefaultConnection no arquivo appsettings.json.</p>
+</ul>	
+
+<!---->
+<h4>Pacotes</h4>
+<img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/Pacotes.png" width="400">
+
+<!---->
+<h3 id="devs"> Desenvolvedoras </h3>
+
+<table>
+  <tr>
+    <th> <a href="https://github.com/agathanigro"><img src="https://avatars1.githubusercontent.com/u/10854438?s=400&u=38b08e6cfe52e7c244c4cfb42c15e7ca322153e4&v=4" width="100"
+	alt="Agatha Nigro"></a> </th>
+    <th> <a href="https://github.com/elisdayane"> <img src="https://avatars1.githubusercontent.com/u/13949186?s=400&u=586688557ec1ed4362aeb05b822be6b196826314&v=4" width="100"
+	alt="Elis Dayane"></a> </th>
+	<th> <a href="https://github.com/rpmprates"> <img src="https://avatars1.githubusercontent.com/u/59710587?s=400&u=d9697e180687f2b9d1830c88522977dc29532f16&v=4" width="100"
+	alt="Raquel Prates"></a> </th>
+	<th> <a href="https://github.com/sheylabarrientos"> <img src="https://avatars1.githubusercontent.com/u/60662105?s=400&u=da0dc0c1216598d95e2fec9b364158368b443a6f&v=4" width="100"
+	alt="Sheyla Barrientos"></a> </th>
+  </tr>
+  <tr>
+    <td><h4> Agatha Nigro </h4></td>
+    <td><h4> Elis Dayane </h4></td>
+	<td><h4> Raquel Prates </h4></td>
+	<td><h4> Sheyla Barrientos </h4></td>
+  </tr>  
+</table>
