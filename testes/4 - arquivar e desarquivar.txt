@@ -1,0 +1,22 @@
+Arquivar
+
+[
+  1,2,3
+]
+
+
+Buscar Arquivados
+--mostrar que eles foram arquivados
+
+Desarquivar
+[
+ 2,3
+]
+
+
+Buscar Arquivados
+--mostrar que eles foram desarquivados
+
+
+
+

@@ -1,0 +1,11 @@
+Buscar por id
+	5 e 6
+
+Remover 
+[
+  5,6
+]
+
+Buscar por id
+	5 e 6
+Vai rertornar Not Found

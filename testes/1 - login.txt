@@ -1,0 +1,34 @@
+
+CADASTRAR
+
+{
+  "email": "agathanigro@hotmail.com",
+  "nome": "agatha",
+  "password": "Agatha@123",
+  "confirmPassword": "Agatha@123"
+}
+
+
+LOGAR 
+
+{
+  "email": "agathanigro@hotmail.com",
+  "password": "Nigro@1234"
+
+}
+
+
+FORGOT PASSWORD - RETORNA UM "CODE"
+{
+  "email": "agathanigro@hotmail.com"
+}
+
+
+RESET PASSWORD - INSERIR O CODE DO METODO ACIMA
+{
+  "email": "agathanigro@hotmail.com",
+  "password": "Nigro@1234",
+  "confirmPassword": "Nigro@1234",
+  "code": ""
+}
+

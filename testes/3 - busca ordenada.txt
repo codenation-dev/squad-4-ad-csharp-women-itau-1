@@ -1,0 +1,49 @@
+BuscarPorNivelAmbiente
+	ambiente		Dev
+	nivel			error
+	ordenarPorNivel		true
+	ordenarPorFrequencia	false
+
+######################################################
+
+BuscarAmbiente
+	ambiente		Prod
+	ordenarPorNivel		true
+	ordenarPorFrequencia	false
+
+BuscarAmbiente
+	ambiente		Prod
+	ordenarPorNivel		false
+	ordenarPorFrequencia	true
+
+
+######################################################
+
+BuscarDescricaoAmbiente
+	ambiente		Prod
+	descricao		Not Modified
+	ordenarPorNivel		true
+	ordenarPorFrequencia	false
+
+
+BuscarDescricaoAmbiente
+	ambiente		Prod
+	descricao		Not Modified
+	ordenarPorNivel		true
+	ordenarPorFrequencia	false
+
+
+######################################################
+
+BuscarPorOrigemAmbiente
+	ambiente		Prod
+	origem			191.238.221.17
+	ordenarPorNivel		true
+	ordenarPorFrequencia	false
+
+BuscarPorOrigemAmbiente
+	ambiente		Prod
+	origem			191.238.221.17
+	ordenarPorNivel		false
+	ordenarPorFrequencia	true
+
