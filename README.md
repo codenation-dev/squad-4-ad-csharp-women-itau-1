@@ -27,7 +27,7 @@ Neste projeto vamos implementar uma web API para centralizar registros de erros 
 		</ul>    
     <li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/LinkEsqueciMinhaSenhaUsuario.png"></li>
 		<ul style="list-style: none;">
-			<li>Gera um link para o usuario alterar a senha</li>	
+			<li>Gera um codigo para o usuario alterar a senha</li>	
 		</ul>			
     <li><img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/ResetSenhaUsuario.png"></li>
 		<ul style="list-style: none;">
