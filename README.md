@@ -110,6 +110,9 @@ Neste projeto vamos implementar uma web API para centralizar registros de erros 
 <h4>Pacotes</h4>
 <img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/Pacotes.png" width="400">
 
+<h4>Apresentação</h4>
+<a href="https://docs.google.com/presentation/d/196sl0QQ-J7FffYJFjQIRnoLY3xdwEmUJCwV14Xtm2kc/edit#slide=id.p">Projeto - Central de Erros Web API</a>
+
 <!---->
 <h3 id="devs"> Desenvolvedoras </h3>
 
