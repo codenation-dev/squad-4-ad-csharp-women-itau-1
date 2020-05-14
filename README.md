@@ -80,10 +80,12 @@ Neste projeto vamos implementar uma web API para centralizar registros de erros 
 		</ul>	
 </ul>
 <h4>Deploy da aplicação</h4>
-<p>https://aceleradevsquad4.azurewebsites.net/swagger/index.html</p>
+<br>
+<a href="https://aceleradevsquad4.azurewebsites.net/swagger/index.html" target="_blank">https://aceleradevsquad4.azurewebsites.net/swagger/index.html</a>
 
 <!---->
 <h4>Modelo - Log</h4>
+<br>
 :octocat: <img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/LogErroDTO.png" width="300">
 
 
@@ -93,7 +95,7 @@ Neste projeto vamos implementar uma web API para centralizar registros de erros 
 <ul style="list-style: none;">	
 	<li>Clonar o projeto</li>
 		<ul style="list-style: none;">
-			<li>	git clone https://github.com/codenation-dev/squad-4-ad-csharp-women-itau-1</li>	
+			<li>	git clone <a href="https://github.com/codenation-dev/squad-4-ad-csharp-women-itau-1" target="_blank">https://github.com/codenation-dev/squad-4-ad-csharp-women-itau-1</a></li>	
 		</ul>
 	<li>Acessar a pasta do Projeto</li>
 		<ul style="list-style: none;">	
@@ -103,7 +105,7 @@ Neste projeto vamos implementar uma web API para centralizar registros de erros 
 		<ul style="list-style: none;">
 			<li>	dotnet run --project ProjetoPraticoCodenation.csproj</li>
 		</ul>
-	<p>Agora é possível acessar a aplicação a partir da rota https://localhost:5001/swagger/index.html</p>
+	<p>Agora é possível acessar a aplicação a partir da rota <a href="https://localhost:5001/swagger/index.html" target="_blank">https://localhost:5001/swagger/index.html</a></p>
 	<p>Para mudar o endereço do banco de dados, altere o parametro DefaultConnection no arquivo appsettings.json.</p>
 </ul>	
 
@@ -112,20 +114,20 @@ Neste projeto vamos implementar uma web API para centralizar registros de erros 
 <img src="https://raw.githubusercontent.com/codenation-dev/squad-4-ad-csharp-women-itau-1/master/img/Pacotes.png" width="400">
 
 <h3 id="apresentacao">Apresentação</h3>
-:computer: <a href="https://docs.google.com/presentation/d/196sl0QQ-J7FffYJFjQIRnoLY3xdwEmUJCwV14Xtm2kc/edit#slide=id.p">Projeto - Central de Erros Web API</a>
+:computer: <a href="https://docs.google.com/presentation/d/196sl0QQ-J7FffYJFjQIRnoLY3xdwEmUJCwV14Xtm2kc/edit#slide=id.p" target="_blank">Projeto - Central de Erros Web API</a>
 
 <!---->
 <h3 id="devs"> Desenvolvedoras </h3>
 
 <table>
   <tr>
-    <th> <a href="https://github.com/agathanigro"><img src="https://avatars1.githubusercontent.com/u/10854438?s=400&u=38b08e6cfe52e7c244c4cfb42c15e7ca322153e4&v=4" width="100"
+    <th> <a href="https://github.com/agathanigro" target="_blank"><img src="https://avatars1.githubusercontent.com/u/10854438?s=400&u=38b08e6cfe52e7c244c4cfb42c15e7ca322153e4&v=4" width="100"
 	alt="Agatha Nigro"></a> </th>
-    <th> <a href="https://github.com/elisdayane"> <img src="https://avatars1.githubusercontent.com/u/13949186?s=400&u=586688557ec1ed4362aeb05b822be6b196826314&v=4" width="100"
+    <th> <a href="https://github.com/elisdayane" target="_blank"> <img src="https://avatars1.githubusercontent.com/u/13949186?s=400&u=586688557ec1ed4362aeb05b822be6b196826314&v=4" width="100"
 	alt="Elis Dayane"></a> </th>
-	<th> <a href="https://github.com/rpmprates"> <img src="https://avatars1.githubusercontent.com/u/59710587?s=400&u=d9697e180687f2b9d1830c88522977dc29532f16&v=4" width="100"
+	<th> <a href="https://github.com/rpmprates" target="_blank"> <img src="https://avatars1.githubusercontent.com/u/59710587?s=400&u=d9697e180687f2b9d1830c88522977dc29532f16&v=4" width="100"
 	alt="Raquel Prates"></a> </th>
-	<th> <a href="https://github.com/sheylabarrientos"> <img src="https://avatars1.githubusercontent.com/u/60662105?s=400&u=da0dc0c1216598d95e2fec9b364158368b443a6f&v=4" width="100"
+	<th> <a href="https://github.com/sheylabarrientos" target="_blank"> <img src="https://avatars1.githubusercontent.com/u/60662105?s=400&u=da0dc0c1216598d95e2fec9b364158368b443a6f&v=4" width="100"
 	alt="Sheyla Barrientos"></a> </th>
   </tr>
   <tr>
