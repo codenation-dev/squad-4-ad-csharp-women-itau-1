@@ -7,11 +7,12 @@
 	<li><a href="#plataforma">Funcionalidades</a><br></li>
 	<li><a href="#rodar">Como rodar a aplicação </a><br></li>
 	<li><a href="#devs">Desenvolvedoras </a><br></li>
+	<li><a href="#apresentacao">Apresentação</a></li>
 </ul>
 
 
 <!---->
-<h3 id="#descricao">Descrição</h3>
+<h3 id="descricao">Descrição</h3>
 <p> Projeto final desenvolvido pelo squad 4 do curso de aceleração em c# promovido pela Codenation.
 Neste projeto vamos implementar uma web API para centralizar registros de erros de aplicações. </p>
 <h4>Status do Projeto</h4>
