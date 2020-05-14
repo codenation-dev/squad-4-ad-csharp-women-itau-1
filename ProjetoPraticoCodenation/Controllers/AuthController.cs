@@ -54,7 +54,8 @@ namespace ProjetoPraticoCodenation.Controllers
 
             if (result.Succeeded)
             {
-                return Ok(result.Succeeded);
+                //return Ok(result.Succeeded);
+                return Ok("Cadastrado com sucesso");
             }
 
             return BadRequest(ErrorResponse.FromIdentity(result.Errors.ToList()));
@@ -83,7 +84,7 @@ namespace ProjetoPraticoCodenation.Controllers
 
         [HttpPost("logout")]
         [ValidateAntiForgeryToken]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
