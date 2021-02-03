@@ -131,7 +131,7 @@ Neste projeto vamos implementar uma web API para centralizar registros de erros 
 	alt="Sheyla Barrientos"></a> </th>
   </tr>
   <tr>
-    <td><h4> Agatha Nigro </h4></td>
+    <td><h4> Agatha N. </h4></td>
     <td><h4> Elis Dayane </h4></td>
 	<td><h4> Raquel Prates </h4></td>
 	<td><h4> Sheyla Barrientos </h4></td>
